@@ -1,8 +1,8 @@
 class Solution:
-    def findNumbers(self, nums: List[int]) -> int:
-        ans = 0
-        for i in nums:
-            if(not (len(str(i)) % 2)):
-                ans += 1
-        
-        return ans
+    def sortedSquares(self, nums: List[int]) -> List[int]:
+        for i in range(len(nums)):
+            nums[i] = nums[i] * nums[i]
+        nums.sort()
+
+        return nums
+
