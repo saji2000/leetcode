@@ -1,8 +1,15 @@
 class Solution:
-    def sortedSquares(self, nums: List[int]) -> List[int]:
-        for i in range(len(nums)):
-            nums[i] = nums[i] * nums[i]
-        nums.sort()
+    def duplicateZeros(self, arr: List[int]) -> None:
+        """
+        Do not return anything, modify arr in-place instead.
+        """
+        length = len(arr)
+        i = 0
+        while i < len(arr):
+            if(arr[i] == 0):
+                arr.insert(i, 0)
+                arr.pop()
+                i += 1
+            i += 1
 
-        return nums
-
+        return arr
