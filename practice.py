@@ -3,9 +3,11 @@ class Solution:
         """
         Do not return anything, modify nums1 in-place instead.
         """
+
         for i in range(n):
             nums1.pop()
-            nums1.insert(0, nums2[i])
+        for i in range(n):
+            nums1.append(nums2[i])
         
         nums1.sort()
 
