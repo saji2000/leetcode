@@ -1,14 +1,11 @@
 class Solution:
-    def duplicateZeros(self, arr: List[int]) -> None:
+    def merge(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:
         """
-        Do not return anything, modify arr in-place instead.
+        Do not return anything, modify nums1 in-place instead.
         """
-        length = len(arr)
-        i = 0
-        while i < len(arr):
-            if(arr[i] == 0):
-                arr.insert(i, 0)
-                arr.pop()
-                i += 1
-            i += 1
+        for i in range(n):
+            nums1.pop()
+            nums1.insert(0, nums2[i])
+        
+        nums1.sort()
 
