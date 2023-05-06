@@ -1,13 +1,14 @@
 class Solution:
-    def merge(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:
-        """
-        Do not return anything, modify nums1 in-place instead.
-        """
+    def removeElement(self, nums: List[int], val: int) -> int:
 
-        for i in range(n):
-            nums1.pop()
-        for i in range(n):
-            nums1.append(nums2[i])
-        
-        nums1.sort()
-
+        k = 0
+        i = 0
+        while i < len(nums):
+            print(nums[i])
+            if(nums[i] == val):
+                del nums[i]
+                nums.append(0)
+                k += 1
+                i -= 1
+            i += 1
+        return len(nums) - k
