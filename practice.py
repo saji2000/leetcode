@@ -1,15 +1,14 @@
 class Solution:
     def checkIfExist(self, arr: List[int]) -> bool:
 
-        arr.sort()
+        if(arr.count(0) > 1):
+            return True
 
-        for i in range(len(arr)):
-            for j in range(len(arr)):
-                if (i != j and arr[j] == arr[i] * 2): 
-                    return True
-        
+        for i in arr:
+            if(i == 0):
+                continue
+
+            if(i * 2 in arr):
+                return True
+            
         return False
-
-
-
-
