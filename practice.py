@@ -1,14 +1,17 @@
 class Solution:
-    def checkIfExist(self, arr: List[int]) -> bool:
+    def validMountainArray(self, arr: List[int]) -> bool:
 
-        if(arr.count(0) > 1):
-            return True
-
-        for i in arr:
-            if(i == 0):
+        ascend = True
+        for i in range(len(arr)):
+            if(ascend and arr[i] < arr[i+1]):
                 continue
-
-            if(i * 2 in arr):
-                return True
+            elif(not ascend and arr[i] > arr[i+1]):
+                continue
+            elif(ascend and arr[i] > arr[i+1] and i != 0):
+                ascend = False
+                continue
+            else:
+                return False
+        
+        return True
             
-        return False
