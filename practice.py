@@ -1,20 +1,10 @@
 class Solution:
-    def validMountainArray(self, arr: List[int]) -> bool:
+    def replaceElements(self, arr: List[int]) -> List[int]:
+        greatest = -1
+        for i in reversed(range(len(arr))):
 
-        if(len(arr) < 2):
-            return False
-
-        ascend = True
-
-        for i in range(len(arr)-1):
-            if(ascend and arr[i] < arr[i+1]):
-                continue
-            elif(not ascend and arr[i] > arr[i+1]):
-                continue
-            elif(ascend and arr[i] > arr[i+1] and i != 0):
-                ascend = False
-                continue
-            else:
-                return False
-        
-        return not ascend
+            temp = arr[i]
+            arr[i] = greatest
+            greatest = max(greatest, temp)
+            
+        return arr
