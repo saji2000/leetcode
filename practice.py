@@ -1,10 +1,10 @@
 class Solution:
-    def replaceElements(self, arr: List[int]) -> List[int]:
-        greatest = -1
-        for i in reversed(range(len(arr))):
+    def removeDuplicates(self, nums: List[int]) -> int:
+        j = 1
 
-            temp = arr[i]
-            arr[i] = greatest
-            greatest = max(greatest, temp)
-            
-        return arr
+        for i in range(1, len(nums)):
+            if(nums[i] != nums[i - 1]):
+                nums[j] = nums[i]
+                j += 1
+
+        return j
