@@ -6,12 +6,8 @@ class Solution:
         i = 0
         j = 0
         while i < len(nums):
-            if(nums[i] == 0):
-                while nums[j] != 0:
-                    temp = nums[j]
-                    nums[j] = nums[i]
-                    nums[i] = temp
-                    j += 1
-
-                i += 1
+            if(nums[i] != 0):
+                nums[j] = nums[i]
+                j += 1
+            i += 1
                 
