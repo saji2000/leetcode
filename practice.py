@@ -1,14 +1,10 @@
 class Solution:
     def sortArrayByParity(self, nums: List[int]) -> None:
-        """
-        Do not return anything, modify nums in-place instead.
-        """
         if(len(nums) < 2):
             return nums
         odd = []
         even = []
         i = 0
-
         while i < len(nums):
             if(nums[i]%2 == 0):
                 even.append(nums[i])
