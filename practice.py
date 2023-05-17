@@ -1,16 +1,12 @@
 class Solution:
-    def sortArrayByParity(self, nums: List[int]) -> None:
-        # here
-        if(len(nums) < 2):
-            return nums
-        odd = []
-        even = []
+    def removeElement(self, nums: List[int], val: int) -> int:
+        j = 0
         i = 0
+
         while i < len(nums):
-            if(nums[i]%2 == 0):
-                even.append(nums[i])
-            else:
-                odd.append(nums[i])
+            if(nums[i] != val):
+                nums[j] = nums[i]
+                j += 1
             i += 1
 
-        return (even + odd)
+        return j
