@@ -1,5 +1,6 @@
 class Solution:
     def sortArrayByParity(self, nums: List[int]) -> None:
+        # here
         if(len(nums) < 2):
             return nums
         odd = []
