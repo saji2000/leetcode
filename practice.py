@@ -1,12 +1,11 @@
 class Solution:
-    def removeElement(self, nums: List[int], val: int) -> int:
-        j = 0
-        i = 0
+    def heightChecker(self, heights: List[int]) -> int:
 
-        while i < len(nums):
-            if(nums[i] != val):
-                nums[j] = nums[i]
-                j += 1
-            i += 1
+        expected = sorted(heights)
+        num = 0
 
-        return j
+        for i in range(len(heights)):
+            if(heights[i] != expected[i]):
+                num += 1
+        
+        return num
