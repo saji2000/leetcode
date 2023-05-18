@@ -10,11 +10,9 @@ class Solution:
         ans = 0
 
         for i in range(len(nums)):
-            if(nums[i] >= max):
+            if(nums[i] >= max and ans < 3):
                 max = nums[i]
                 max_list.append(max)
                 ans += 1
-        
-        print(max_list)
-    
-        return max_list[-3]
+            
+        return max_list[0]
