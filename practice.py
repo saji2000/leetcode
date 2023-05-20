@@ -5,11 +5,8 @@ class Solution:
             return nums[0]
         
         max_list = [] 
-
         nums.sort()
-        
         max = nums[0]
-        
         ans = 0
 
         for i in range(len(nums)):
@@ -17,7 +14,6 @@ class Solution:
                 max = nums[i]
                 max_list.append(max)
                 ans += 1
-        
 
         if(len(max_list) < 3):
             return max_list[-1]
