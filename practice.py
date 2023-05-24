@@ -1,12 +1,8 @@
 class Solution:
-    def findDisappearedNumbers(self, nums: List[int]) -> List[int]:
+    def sortedSquares(self, nums: List[int]) -> List[int]:
+        for i in range(len(nums)):
+            nums[i] = nums[i] * nums[i]
+        nums.sort()
 
-        numbers = set(nums)
+        return nums
 
-        ans = []
-
-        for i in range(1, len(nums) + 1):
-            if(i  not in numbers):
-                ans.append(i)
-        
-        return ans
