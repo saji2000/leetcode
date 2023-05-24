@@ -1,12 +1,3 @@
 class Solution:
-    def thirdMax(self, nums: List[int]) -> int:
-
-        numbers = set(nums)
+    def findDisappearedNumbers(self, nums: List[int]) -> List[int]:
         
-        if(len(numbers) < 3):
-            return max(numbers)
-        
-        numbers.remove(max(numbers))
-        numbers.remove(max(numbers))
-
-        return max(numbers)
