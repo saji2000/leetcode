@@ -40,24 +40,32 @@ class MyLinkedList:
         self.size += 1
 
     def addAtIndex(self, index: int, val: int) -> None:
-        if index < 0 or index >= self.size:
+        if index < 0 or index > self.size:
             return
-        
         if index == 0:
             self.addAtHead(val)
-
         else:
             node = Node(val)
             curr = self.head
-            for i in range(index - 1):
+            for _ in range(index - 1):
                 curr = curr.next
-            
             node.next = curr.next
             curr.next = node
             self.size += 1
 
+
     def deleteAtIndex(self, index: int) -> None:
+        if index < 0 or index >= self.size:
+            return
+        if index == 0:
+            self.head = self.head.next
+        else:
+            curr = self.head
+            for i in range(1, index - 1):
+                curr = curr.next
+            curr.next = curr.next.next
         
+        self.size -= 1
 
 
 # Your MyLinkedList object will be instantiated and called as such:
