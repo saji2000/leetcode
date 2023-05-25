@@ -17,7 +17,7 @@ class MyLinkedList:
         for i in range(index):
             curr = curr.next
 
-        return curr.next
+        return curr.value
 
     def addAtHead(self, val: int) -> None:
         node = Node(val)
@@ -26,10 +26,35 @@ class MyLinkedList:
         self.size += 1
 
     def addAtTail(self, val: int) -> None:
-        
+
+        node =  Node(val)
+
+        if self.head == None:
+            self.head = node
+        else:
+            curr = self.head
+            while curr.next:
+                curr = curr.next
+            curr.next = node
+
+        self.size += 1
 
     def addAtIndex(self, index: int, val: int) -> None:
+        if index < 0 or index >= self.size:
+            return
         
+        if index == 0:
+            self.addAtHead(val)
+
+        else:
+            node = Node(val)
+            curr = self.head
+            for i in range(index - 1):
+                curr = curr.next
+            
+            node.next = curr.next
+            curr.next = node
+            self.size += 1
 
     def deleteAtIndex(self, index: int) -> None:
         
