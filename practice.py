@@ -1,68 +1,21 @@
-class Node:
-    def __init__(self, value):
-        self.value = value
+# Definition for singly-linked list.
+class ListNode:
+    def __init__(self, x):
+        self.val = x
         self.next = None
 
-
-class MyLinkedList:
-    def __init__(self):
-        self.head = None
-        self.size = 0
-
-    def get(self, index: int) -> int:
-        if(index < 0 or index >= self.size):
-            return -1
-        curr = self.head
-
-        for i in range(index):
-            curr = curr.next
-
-        return curr.value
-
-    def addAtHead(self, val: int) -> None:
-        node = Node(val)
-        node.next = self.head
-        self.head = node
-        self.size += 1
-
-    def addAtTail(self, val: int) -> None:
-
-        node =  Node(val)
-
-        if self.head == None:
-            self.head = node
-        else:
-            curr = self.head
-            while curr.next:
-                curr = curr.next
-            curr.next = node
-
-        self.size += 1
-
-    def addAtIndex(self, index: int, val: int) -> None:
-        if index < 0 or index > self.size:
-            return
-        if index == 0:
-            self.addAtHead(val)
-        else:
-            node = Node(val)
-            curr = self.head
-            for _ in range(index - 1):
-                curr = curr.next
-            node.next = curr.next
-            curr.next = node
-            self.size += 1
-
-
-    def deleteAtIndex(self, index: int) -> None:
-        if index < 0 or index >= self.size:
-            return
-        if index == 0:
-            self.head = self.head.next
-        else:
-            curr = self.head
-            for i in range(1, index - 1):
-                curr = curr.next
-            curr.next = curr.next.next
+class Solution:
+    def hasCycle(self, head: Optional[ListNode]) -> bool:
+        if(not head or not head.next):
+            return False
         
-        self.size -= 1
+        i = head
+        j = head.next
+
+        while(i != j):
+            if(not j or not j.next):
+                return False
+            j = j.next.next
+            i = i.next
+
+        return True
