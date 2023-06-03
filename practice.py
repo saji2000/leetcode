@@ -10,15 +10,14 @@ class Solution:
         if(not head or not head.next):
             return None
         
-        i = head
-        j = head.next
+        visited = set()
+        i = head 
 
-        while (i.next):
-            if(j == i):
-                return j
-            if(j.next):
-                j = j.next
-            else:
-                i = i.next
-                j = i.next
+        while(i):
+            if(i not in visited):
+                visited.add(i)
+            elif(i in visited):
+                return i
+            i = i.next
+        
         return None
