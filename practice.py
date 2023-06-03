@@ -14,10 +14,9 @@ class Solution:
         i = head 
 
         while(i):
-            if(i not in visited):
-                visited.add(i)
-            elif(i in visited):
+            if(i in visited):
                 return i
+            visited.add(i)                
             i = i.next
         
         return None
