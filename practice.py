@@ -1,18 +1,24 @@
-import math
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
 
-n = 10  # Number of trials
-x = 6   # Number of successes
-p = 0.0526  # Probability of success
+class Solution:
+    def detectCycle(self, head: Optional[ListNode]) -> Optional[ListNode]:
 
-# Calculate the binomial coefficient (nCx)
-nCx = math.comb(n, x)
+        if(not head or not head.next):
+            return None
+        
+        i = head
+        j = head.next
 
-# Calculate the probability using the binomial formula
-probability = nCx * (p ** x) * ((1 - p) ** (n - x))
-
-formatted_probability = "{:.8f}".format(probability*100)
-
-# Print the result
-print("Probability:" + formatted_probability + "%")
-
-print("1 in a " + str(1/probability))
+        while (i.next):
+            if(j == i):
+                return j
+            if(j.next):
+                j = j.next
+            else:
+                i = i.next
+                j = i.next
+        return None
