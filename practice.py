@@ -1,23 +1,31 @@
 # Definition for singly-linked list.
 # class ListNode:
-#     def __init__(self, x):
-#         self.val = x
-#         self.next = None
-
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
 class Solution:
-    def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> Optional[ListNode]:
+    def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
+        if not head or not head.next:
+            return None
         
-        nodes = set()
+        length = 0
+        node = head
+        
+        while node:
+            node = node.next
+            length += 1
+        
+        n = length - n
+        
+        if n == 0:
+            return head.next
+        
+        node = head
+        
+        for i in range(0, n - 1):
+            node = node.next
+        
+        node.next = node.next.next
+        
+        return head
 
-        node_a = headA
-        node_b = headB
-
-        while(node_a):
-            nodes.add(node_a)
-            node_a = node_a.next
-
-        while(node_b):
-            if(node_b in nodes):
-                return node_b
-            node_b = node_b.next
-        return None
