@@ -5,18 +5,5 @@
 #         self.next = None
 
 class Solution:
-    def detectCycle(self, head: Optional[ListNode]) -> Optional[ListNode]:
-
-        if(not head or not head.next):
-            return None
+    def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> Optional[ListNode]:
         
-        visited = set()
-        i = head 
-
-        while(i):
-            if(i in visited):
-                return i
-            visited.add(i)                
-            i = i.next
-        
-        return None
