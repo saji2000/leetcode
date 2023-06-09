@@ -4,28 +4,21 @@
 #         self.val = val
 #         self.next = next
 class Solution:
-    def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
-        if not head or not head.next:
-            return None
-        
-        length = 0
-        node = head
-        
-        while node:
-            node = node.next
-            length += 1
-        
-        n = length - n
-        
-        if n == 0:
-            return head.next
+    def removeElements(self, head: Optional[ListNode], val: int) -> Optional[ListNode]:
         
         node = head
-        
-        for i in range(0, n - 1):
-            node = node.next
-        
-        node.next = node.next.next
+        prev = None
+
+        while(node):
+            next = node.next
+            if(node.val == val and node == head):
+                head = next
+            elif(node.val == val):
+                prev.next = next
+            elif(node == head):
+                prev = head
+            else:
+                prev = prev.next
+            node = next
         
         return head
-

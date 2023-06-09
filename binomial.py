@@ -1,8 +1,8 @@
 import math
 
-n = 4  # Number of trials
-x = 4   # Number of successes
-p = 1/7  # Probability of success
+n = 14  # Number of trials
+x = 11   # Number of successes
+p = 0.0526  # Probability of success
 
 # Calculate the binomial coefficient (nCx)
 nCx = math.comb(n, x)
@@ -10,7 +10,7 @@ nCx = math.comb(n, x)
 # Calculate the probability using the binomial formula
 probability = nCx * (p ** x) * ((1 - p) ** (n - x))
 
-formatted_probability = "{:.8f}".format(probability * 100)
+formatted_probability = "{:.11f}".format(probability * 100)
 
 # Print the result
 print("Probability: " + formatted_probability + "%")
