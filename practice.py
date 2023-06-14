@@ -3,25 +3,27 @@ class ListNode:
     def __init__(self, val=0, next=None):
         self.val = val
         self.next = next
-
 class Solution:
-    def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
-
-        ans = ListNode(0)
-        ans_node = ans
-
-        while(list1 and list2):
-            if(list1.val <= list2.val):
-                ans_node.next = list1
-                list1 = list1.next
-            else:
-                ans_node.next = list2
-                list2 = list2.next
-            ans_node = ans_node.next
+    def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
         
-        if(list1):
-            ans_node.next = list1
-        else:
-            ans_node.next = list2
+        head = ListNode(-1)
+        sum = head
+        carry = 0
 
-        return ans.next
+        while(l1 or l2 or carry):
+
+            if(l1):
+                carry += l1.val
+                l1 = l1.next
+            if(l2):
+                carry += l2.val
+                l2 = l2.next
+
+            sum.next = ListNode(carry % 10)
+            sum = sum.next
+            if(carry >= 10):
+                carry = 1
+            else:
+                carry = 0
+
+        return head.next
