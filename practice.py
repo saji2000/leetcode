@@ -1,29 +1,40 @@
-# Definition for singly-linked list.
-class ListNode:
-    def __init__(self, val=0, next=None):
-        self.val = val
+# Definition for a Node.
+class Node:
+    def __init__(self, x: int, next: 'Node' = None, random: 'Node' = None):
+        self.val = int(x)
         self.next = next
+        self.random = random
+
 class Solution:
-    def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
+    def copyRandomList(self, head: 'Optional[Node]') -> 'Optional[Node]':
         
-        head = ListNode(-1)
-        sum = head
-        carry = 0
+        if not head:
+            return None
+        
+        my_list = {}
+        
+        curr = head
 
-        while(l1 or l2 or carry):
+        while curr:
 
-            if(l1):
-                carry += l1.val
-                l1 = l1.next
-            if(l2):
-                carry += l2.val
-                l2 = l2.next
+            node = Node(curr.val)
 
-            sum.next = ListNode(carry % 10)
-            sum = sum.next
-            if(carry >= 10):
-                carry = 1
-            else:
-                carry = 0
+            my_list[curr] = node
 
-        return head.next
+            curr = curr.next
+        
+        curr = head
+
+        while curr:
+
+            node = my_list[curr]
+
+            if(curr.next):
+                node.next = my_list[curr.next]
+            
+            if(curr.random):
+                node.random = my_list[curr.random]
+
+            curr = curr.next
+        
+        return my_list[0]
