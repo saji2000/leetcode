@@ -1,40 +1,38 @@
-# Definition for a Node.
-class Node:
-    def __init__(self, x: int, next: 'Node' = None, random: 'Node' = None):
-        self.val = int(x)
+# Definition for singly-linked list.
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
         self.next = next
-        self.random = random
 
 class Solution:
-    def copyRandomList(self, head: 'Optional[Node]') -> 'Optional[Node]':
+    def rotateRight(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
         
         if not head:
             return None
         
-        my_list = {}
+
+        tail = head 
+        length = 1
+
+        while tail.next:
+            tail = tail.next
+            length += 1
+
+        k = k % length
+
+        if(k == 0):
+            return head
+
+        position = length - k - 1
         
-        curr = head
+        node = head
 
-        while curr:
+        for i in range(position):
 
-            node = Node(curr.val)
+            node = node.next
 
-            my_list[curr] = node
-
-            curr = curr.next
-        
-        curr = head
-
-        while curr:
-
-            node = my_list[curr]
-
-            if(curr.next):
-                node.next = my_list[curr.next]
+        new_head = node.next
+        node.next = None
             
-            if(curr.random):
-                node.random = my_list[curr.random]
-
-            curr = curr.next
-        
-        return my_list[0]
+        tail.next = head
+        return new_head
