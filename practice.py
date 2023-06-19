@@ -1,11 +1,18 @@
+# Definition for singly-linked list.
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
 class Solution:
-    def reverseString(self, s: List[str]) -> None:
-        """
-        Do not return anything, modify s in-place instead.
-        """
-        def reverse(l, r):
-            if(l < r):
-                s[l], s[r] = s[r], s[l]
-                reverse(l + 1, r - 1)
-        
-        reverse(0, len(s) - 1)
+    def swapPairs(self, head: Optional[ListNode]) -> Optional[ListNode]:
+
+        if not head or not head.next:
+            return head
+
+        remain = head.next.next
+        new_head = head.next
+        new_head.next = head
+        head.next = self.swapPairs(remain)
+
+        return new_head
