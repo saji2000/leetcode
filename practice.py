@@ -5,14 +5,17 @@ class ListNode:
         self.next = next
 
 class Solution:
-    def swapPairs(self, head: Optional[ListNode]) -> Optional[ListNode]:
+    def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
 
-        if not head or not head.next:
-            return head
+        def reverse(curr, prev):
+            if(not curr):
+                return prev
+            
+            else:
+                next = curr.next
+                curr.next = prev
+                return reverse(next, curr)
 
-        remain = head.next.next
-        new_head = head.next
-        new_head.next = head
-        head.next = self.swapPairs(remain)
+        head = reverse(head, None)
 
-        return new_head
+        return head
