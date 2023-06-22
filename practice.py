@@ -1,21 +1,20 @@
-# Definition for singly-linked list.
-class ListNode:
-    def __init__(self, val=0, next=None):
+# Definition for a binary tree node.
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
         self.val = val
-        self.next = next
+        self.left = left
+        self.right = right
 
 class Solution:
-    def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+    def searchBST(self, root: Optional[TreeNode], val: int) -> Optional[TreeNode]:
+        
+        if(root.val == val):
+            return root
+        
+        elif(root.val > val and root.left):
+            return self.searchBST(root.left, val)
 
-        def reverse(curr, prev):
-            if(not curr):
-                return prev
-            
-            else:
-                next = curr.next
-                curr.next = prev
-                return reverse(next, curr)
-
-        head = reverse(head, None)
-
-        return head
+        elif(root.val < val and root.right):
+            return self.searchBST(root.right, val)
+        
+        return None

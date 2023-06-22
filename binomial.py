@@ -10,6 +10,8 @@ nCx = math.comb(n, x)
 # Calculate the probability using the binomial formula
 probability = nCx * (p ** x) * ((1 - p) ** (n - x))
 
+print(probability)
+
 formatted_probability = "{:.11f}".format(probability * 100)
 
 # Print the result

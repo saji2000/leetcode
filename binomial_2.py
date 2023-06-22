@@ -1,8 +1,8 @@
 import math
 
 n = 29  # Number of trials
-x = 4   # Number of successes
-p = 0.1  # Probability of success
+x = 7   # Number of successes
+p = 0.105  # Probability of success
 
 # Calculate the binomial coefficient (nCx)
 nCx = math.comb(n, x)
