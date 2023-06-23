@@ -1,11 +1,13 @@
 import math
 
-n = 14  # Number of trials
-x = 10   # Number of successes
+n = 96  # Number of trials
+x = 5   # Number of successes
 p = 0.0526  # Probability of success
 
 # Calculate the binomial coefficient (nCx)
 nCx = math.comb(n, x)
+
+print(nCx)
 
 # Calculate the probability using the binomial formula
 probability = nCx * (p ** x) * ((1 - p) ** (n - x))

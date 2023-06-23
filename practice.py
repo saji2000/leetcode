@@ -1,20 +1,17 @@
-# Definition for a binary tree node.
-class TreeNode:
-    def __init__(self, val=0, left=None, right=None):
-        self.val = val
-        self.left = left
-        self.right = right
-
 class Solution:
-    def searchBST(self, root: Optional[TreeNode], val: int) -> Optional[TreeNode]:
+    def getRow(self, rowIndex: int) -> List[int]:
         
-        if(root.val == val):
-            return root
+        ans = []
         
-        elif(root.val > val and root.left):
-            return self.searchBST(root.left, val)
+        def rowColumn(row, column):
+            if(column == 0 or row == column):
+                return 1
+            else:
+                return rowColumn(row - 1, column - 1) + rowColumn(row - 1, column)
+            
+        
+        for i in range(0, rowIndex + 1):
+            ans.append(rowColumn(rowIndex, i))
 
-        elif(root.val < val and root.right):
-            return self.searchBST(root.right, val)
+        return ans
         
-        return None
