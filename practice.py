@@ -1,23 +1,17 @@
 class Solution:
-    def getRow(self, rowIndex: int) -> List[int]:
-        
-        ans = []
 
-        memo = {}
-        
-        def rowColumn(row, column):
-            if(column == 0 or row == column):
-                return 1
-            elif (row, column) in memo:
-                return memo[(row, column)]
-            else:
-                result = rowColumn(row - 1, column - 1) + rowColumn(row - 1, column)
-                memo[(row, column)] = result
-                return result
-            
-        
-        for i in range(0, rowIndex + 1):
-            ans.append(rowColumn(rowIndex, i))
+    memo = {}
 
-        return ans
+    def fib(self, n: int) -> int:
         
+        if(n == 1):
+            return 1
+        elif(n == 0):
+            return 0
+
+        if(n in self.memo):
+            return self.memo[n]
+        
+        self.memo[n] = self.fib(n - 1) + self.fib(n - 2)
+
+        return self.memo[n]
