@@ -1,7 +1,7 @@
 import math
 
-n = 114  # Number of trials
-x = 19   # Number of successes
+n = 90  # Number of trials
+x = 7   # Number of successes
 p = 2*0.0526  # Probability of success
 
 # Calculate the binomial coefficient (nCx)

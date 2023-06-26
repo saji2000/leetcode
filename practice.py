@@ -2,16 +2,15 @@ class Solution:
 
     memo = {}
 
-    def fib(self, n: int) -> int:
+    def climbStairs(self, n: int) -> int:
         
-        if(n == 1):
-            return 1
-        elif(n == 0):
-            return 0
-
-        if(n in self.memo):
+        if(n <= 2):
+            return n
+        
+        if n in self.memo:
             return self.memo[n]
-        
-        self.memo[n] = self.fib(n - 1) + self.fib(n - 2)
+        else:
+            result = self.climbStairs(n - 1) + self.climbStairs(n - 2)
+            self.memo[n] = result
 
         return self.memo[n]
