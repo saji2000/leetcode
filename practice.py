@@ -1,16 +1,25 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
 class Solution:
 
-    memo = {}
-
-    def climbStairs(self, n: int) -> int:
+    def maxDepth(self, root: Optional[TreeNode]) -> int:
         
-        if(n <= 2):
-            return n
+        if not root:
+            return 0
+        elif not root.left and not root.right:
+            return 1
         
-        if n in self.memo:
-            return self.memo[n]
-        else:
-            result = self.climbStairs(n - 1) + self.climbStairs(n - 2)
-            self.memo[n] = result
+        depth_l, depth_r = 0,0
+        
+    
+        if(root.left):
+            depth_l = 1 + self.maxDepth(root.left)
+        if(root.right):
+            depth_r = 1 + self.maxDepth(root.right)
 
-        return self.memo[n]
+        return max(depth_l, depth_r)
+
