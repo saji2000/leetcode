@@ -1,25 +1,22 @@
-# Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
 class Solution:
+    def myPow(self, x: float, n: int) -> float:
 
-    def maxDepth(self, root: Optional[TreeNode]) -> int:
-        
-        if not root:
-            return 0
-        elif not root.left and not root.right:
+        if n == 0:
             return 1
         
-        depth_l, depth_r = 0,0
+        if n == 1:
+            return x
+
+        if n < 0:
+            x = 1 / x
+            n = -n
+
+        if n == 2:
+            return x * x
         
-    
-        if(root.left):
-            depth_l = 1 + self.maxDepth(root.left)
-        if(root.right):
-            depth_r = 1 + self.maxDepth(root.right)
+        half = self.myPow(x, n // 2)
 
-        return max(depth_l, depth_r)
-
+        if n % 2 == 0:
+            return half * half
+        else:
+            return half * half * x
