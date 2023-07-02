@@ -1,15 +1,25 @@
 class Solution:
-    def removeDuplicates(self, nums: List[int]) -> int:
+    def majorityElement(self, nums: List[int]) -> int:
+        
+        if len(nums) == 0:
+            return None
+        elif len(nums) == 1:
+            return nums[0]
+        
+        memo = {}
+        
+        for num in nums:
+            if num in memo:
+                memo[num] += 1
+            else:
+                memo[num] = 1
+            
+        max = 1
+        ans = 0
+        for num in memo:
+            if memo[num] > max:
+                max = memo[num]
+                ans = num
+        
+        return ans
 
-        k = 0
-        length = len(nums)
-
-        for i in range(0, length - 2):
-            if nums[i] == nums[i + 2]:
-                j = i + 2
-                start = j
-                while j < length - 2 and nums[i] == nums[j]:
-                    j += 1
-                    k += 1
-                nums[start:j] = nums[j:]
-        return length - k 
