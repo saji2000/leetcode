@@ -1,5 +1,12 @@
 class Solution:
-    def majorityElement(self, nums: List[int]) -> int:
-        nums.sort()
-        n = len(nums)
-        return nums[n//2]
+    def rotate(self, nums: List[int], k: int) -> None:
+        """
+        Do not return anything, modify nums in-place instead.
+        """
+        length  = len(nums)
+        k = k % length
+        k = length - k
+
+        temp = nums[k:] 
+        nums[k:] = nums[0:k]
+        nums[0:k] = temp
