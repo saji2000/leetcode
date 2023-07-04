@@ -1,12 +1,9 @@
 class Solution:
-    def rotate(self, nums: List[int], k: int) -> None:
-        """
-        Do not return anything, modify nums in-place instead.
-        """
-        length  = len(nums)
-        k = k % length
-        k = length - k
-
-        temp = nums[k:] 
-        nums[k:] = nums[0:k]
-        nums[0:k] = temp
+    def maxProfit(self, prices: List[int]) -> int:
+        max = 0
+        for i in range(0, len(prices)):
+            for j in range(i + 1, len(prices)):
+                if (prices[j] - prices[i]) > max:
+                    max = prices[j] - prices[i]
+        return max
+        
