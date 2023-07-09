@@ -1,8 +1,8 @@
 class Solution:
-    def strStr(self, haystack: str, needle: str) -> int:
-        return haystack.find(needle)
+    def containsDuplicate(self, nums: List[int]) -> bool:
+        nums.sort()
 
-
-solution = Solution()
-
-solution.strStr("mississippi", "issip")
+        for i in range(1, len(nums)):
+            if nums[i - 1] == nums[i]:
+                return True
+        return False
