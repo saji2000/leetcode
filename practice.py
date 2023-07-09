@@ -1,17 +1,8 @@
 class Solution:
-    def longestCommonPrefix(self, strs: List[str]) -> str:
-        strs = sorted(strs)
-        first = strs[0]
-        last = strs[-1]
-
-        ans = ""
-        for i in range(min(len(first), len(last))):
-            if first[i] != last[i]:
-                return ans
-            ans = ans + str(first[i])
-        return ans
+    def strStr(self, haystack: str, needle: str) -> int:
+        return haystack.find(needle)
 
 
 solution = Solution()
 
-print(solution.longestCommonPrefix("MCMXCIV"))
+solution.strStr("mississippi", "issip")
