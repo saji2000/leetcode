@@ -1,10 +1,11 @@
-class Solution:
-    def twoSum(self, nums: List[int], target: int) -> List[int]:
-        seen = {}
+import re
 
-        for i in range(0, len(nums)):
-            complement = target - nums[i]
-            if complement in seen:
-                return (i, seen[complement])
-            seen[nums[i]] = i
-        return None
+
+class Solution:
+    def isPalindrome(self, s: str) -> bool:
+        s = "".join(val for val in s if val.isalnum()).lower()
+
+
+solution = Solution()
+
+solution.isPalindrome("here")
