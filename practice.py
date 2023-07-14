@@ -1,12 +1,10 @@
-import re
-
-
 class Solution:
-    def isPalindrome(self, s: str) -> bool:
-        s = "".join(val for val in s if val.isalnum().lower())
-        return s == s[::-1]
-
-
-solution = Solution()
-
-solution.isPalindrome("here")
+    def maxProfit(self, prices):
+        l, r = 0
+        profit = 0
+        while r < len(prices):
+            if prices[l] > prices[r]:
+                l = r
+            profit = max(profit, prices[r] - prices[l])
+            r += 1
+        return profit
