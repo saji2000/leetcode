@@ -1,9 +1,7 @@
 class Solution:
-    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
-        groups = defaultdict(list)
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        freq = Counter(nums)
 
-        for i in strs:
-            sorted_word = "".join(sorted(i))
-            groups[sorted_word].append(i)
+        ans = sorted(freq.keys(), key=lambda x: freq[x], reverse=True)
 
-        return list(groups.values())
+        return ans[0:k]
