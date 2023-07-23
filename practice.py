@@ -1,15 +1,13 @@
-class Solution(object):
-    def isValid(self, s):
-        stack = []
-        for i in s:
-            if i in "({[":
-                stack.append(i)
-            else:
-                if not stack or (
-                    (i == ")" and stack[-1] != "(")
-                    or (i == "}" and stack[-1] != "{")
-                    or (i == "]" and stack[-1] != "[")
-                ):
-                    return False
-                stack.pop()
-        return not stack
+class Solution:
+    def maxProfit(self, prices):
+        l, r = 0, 0
+        max_profit = 0
+
+        for i in prices:
+            profit = prices[r] - prices[l]
+            if profit < 0:
+                l = r
+            r += 1
+            max_profit = max(max_profit, profit)
+
+        return max_profit
