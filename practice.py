@@ -6,26 +6,13 @@ class ListNode:
 
 
 class Solution:
-    def mergeTwoLists(
-        self, list1: Optional[ListNode], list2: Optional[ListNode]
-    ) -> Optional[ListNode]:
-        ans = ListNode(0)
-        head = ans
+    def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        prev = None
 
-        while list1 or list2:
-            if not list1:
-                head.next = list2
-                return ans.next
-            elif not list2:
-                head.next = list1
-                return ans.next
-            if list1.val <= list2.val:
-                head.next = ListNode(list1.val)
-                list1 = list1.next
-                head = head.next
-            else:
-                head.next = ListNode(list2.val)
-                list2 = list2.next
-                head = head.next
+        while head:
+            next_node = head.next
+            head.next = prev
+            prev = head
+            head = next_node
 
-        return ans.next
+        return prev
