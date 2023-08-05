@@ -7,15 +7,13 @@ class TreeNode:
 
 
 class Solution:
-    def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
-        if not root:
-            return root
+    def maxDepth(self, root: Optional[TreeNode]) -> int:
+        if root is None:
+            return 0
 
-        temp = root.left
-        root.left = root.right
-        root.right = temp
+        if root.left:
+            left_depth = self.maxDepth(root.left) + 1
+        if root.right:
+            right_depth = self.maxDepth(root.right) + 1
 
-        self.invertTree(root.left)
-        self.invertTree(root.right)
-
-        return root
+        return max(left_depth, right_depth)
