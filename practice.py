@@ -7,13 +7,14 @@ class TreeNode:
 
 
 class Solution:
-    def maxDepth(self, root: Optional[TreeNode]) -> int:
-        if root is None:
-            return 0
-
-        if root.left:
-            left_depth = self.maxDepth(root.left) + 1
-        if root.right:
-            right_depth = self.maxDepth(root.right) + 1
-
-        return max(left_depth, right_depth)
+    def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
+        if not p and q:
+            return False
+        elif p and not q:
+            return False
+        elif not p and not q:
+            return True
+        elif p.val == q.val:
+            return self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right)
+        else:
+            return False
