@@ -1,26 +1,20 @@
-# Definition for a binary tree node.
-class TreeNode:
-    def __init__(self, val=0, left=None, right=None):
-        self.val = val
-        self.left = left
-        self.right = right
-
-
 class Solution:
-    def isMatch(self, rootA: Optional[TreeNode], rootB: Optional[TreeNode]):
-        if not (rootA and rootB):
-            return rootA is rootB
-        elif (
-            (rootA.val == rootB.val)
-            and (self.isMatch(rootA.left, rootB.left))
-            and (self.isMatch(rootA.right, rootB.right))
-        ):
-            return True
-        return False
+    memo = {}
 
-    def isSubtree(self, root: Optional[TreeNode], subRoot: Optional[TreeNode]) -> bool:
-        if self.isMatch(root, subRoot):
-            return True
-        elif not root:
-            return False
-        return self.isSubtree(root.left, subRoot) or self.isSubtree(root.right, subRoot)
+    def climbStairs(self, n: int) -> int:
+        if n == 1:
+            return 1
+        if n == 2:
+            return 2
+        if (n - 1) in self.memo:
+            num_1 = self.memo[n - 1]
+        else:
+            self.memo[n - 1] = self.climbStairs(n - 1)
+            num_1 = self.memo[n - 1]
+        if (n - 2) in self.memo:
+            num_2 = self.memo[n - 2]
+        else:
+            self.memo[n - 2] = self.climbStairs(n - 2)
+            num_2 = self.memo[n - 2]
+
+        return num_1 + num_2
