@@ -1,11 +1,19 @@
 class Solution:
-    def missingNumber(self, nums: List[int]) -> int:
-        nums.sort()
+    def productExceptSelf(self, nums: List[int]) -> List[int]:
+        n = len(nums)
 
-        for i in range(0, len(nums) - 1):
-            if nums[i] + 1 != nums[i + 1]:
-                return nums[i] + 1
+        result = [1] * n
 
-        if nums[0] == 0:
-            return nums[-1] + 1
-        return 0
+        left_product = 1
+
+        for i in range(n):
+            result[i] *= left_product
+            left_product *= nums[i]
+
+        right_product = 1
+
+        for i in range(n - 1, -1, -1):
+            result[i] *= right_product
+            right_product *= nums[i]
+
+        return result
