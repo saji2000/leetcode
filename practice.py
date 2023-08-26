@@ -5,7 +5,7 @@ class Solution:
         result = [1] * n
         left_product = 1
         for i in range(0, n):
-            result[i] *= left_product
+            result[i] = left_product
             left_product *= nums[i]
 
         right_product = 1
