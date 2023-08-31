@@ -8,7 +8,9 @@ class Solution:
             if i > 0 and a == nums[i - 1]:
                 continue
 
-            l, r = i + 1, len(nums) - 1
+            l = i + 1
+            r = len(nums) - 1
+
             while l < r:
                 threeSum = a + nums[l] + nums[r]
 
@@ -24,5 +26,4 @@ class Solution:
                         l += 1
                     while l < r and nums[r] == nums[r + 1]:
                         r -= 1
-
         return ans
