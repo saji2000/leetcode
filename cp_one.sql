@@ -29,3 +29,11 @@ WHERE Project != 'P1'
 
 SELECT EmpId, Salary + Variable as TotalSalary
 FROM Salary
+
+SELECT EmpId 
+FROM Employee
+WHERE Name LIKE '__vi%'
+
+SELECT EmpId 
+FROM EMPLOYEE
+WHERE COMM is NULL
