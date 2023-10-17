@@ -1,25 +1,20 @@
-class Solution:
-    def summaryRanges(self, nums: List[int]) -> List[str]:
-        ans = []
+# Definition for a binary tree node.
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
 
-        if not nums:
+
+class Solution:
+    def pruneTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+        if not root:
             return
 
-        l = 0
-        r = 0
+        root.left = self.pruneTree(root.left)
+        root.right = self.pruneTree(root.right)
 
-        while r < len(nums) - 1:
-            if nums[r] != nums[r + 1] - 1:
-                if l == r:
-                    ans.append(str(nums[r]))
-                else:
-                    ans.append(str(nums[l]) + "->" + str(nums[r]))
-                l = r + 1
-            r += 1
+        if root.val == 0 and root.right is None and root.left is None:
+            return None
 
-        if l == r:
-            ans.append(str(nums[r]))
-        else:
-            ans.append(str(nums[l]) + "->" + str(nums[r]))
-
-        return ans
+        return root
