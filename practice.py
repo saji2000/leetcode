@@ -1,28 +1,17 @@
-# Definition for a Node.
-class Node:
-    def __init__(self, x: int, next: "Node" = None, random: "Node" = None):
-        self.val = int(x)
-        self.next = next
-        self.random = random
-
-
 class Solution:
-    def copyRandomList(self, head: "Optional[Node]") -> "Optional[Node]":
-        if not head:
-            return
+    def wordPattern(self, pattern: str, s: str) -> bool:
+        s = s.split()
+        my_dict = dict()
 
-        curr = head
-        nodes = {}
+        if len(pattern) != len(s):
+            return False
+        if len(set(pattern)) != len(set(s)):
+            return False
 
-        while curr:
-            nodes[curr] = Node(curr.val)
-            curr = curr.next
-
-        curr = head
-
-        while curr:
-            nodes[curr].next = nodes.get(curr.next)
-            nodes[curr].random = nodes.get(curr.random)
-            curr = curr.next
-
-        return nodes[head]
+        for i in range(len(s)):
+            if pattern[i] in my_dict:
+                if s[i] != my_dict.get(pattern[i]):
+                    return False
+            else:
+                my_dict[pattern[i]] = s[i]
+        return True
