@@ -3,7 +3,7 @@ class Solution:
         ans = []
 
         if not nums:
-            return ans
+            return
 
         l = 0
         r = 0
@@ -11,14 +11,14 @@ class Solution:
         while r < len(nums) - 1:
             if nums[r] != nums[r + 1] - 1:
                 if l == r:
-                    ans.append(str(nums[l]))
+                    ans.append(str(nums[r]))
                 else:
                     ans.append(str(nums[l]) + "->" + str(nums[r]))
                 l = r + 1
             r += 1
 
         if l == r:
-            ans.append(str(nums[l]))
+            ans.append(str(nums[r]))
         else:
             ans.append(str(nums[l]) + "->" + str(nums[r]))
 
