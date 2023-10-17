@@ -1,25 +1,28 @@
-# Definition for singly-linked list.
-class ListNode:
-    def __init__(self, val=0, next=None):
-        self.val = val
+# Definition for a Node.
+class Node:
+    def __init__(self, x: int, next: "Node" = None, random: "Node" = None):
+        self.val = int(x)
         self.next = next
+        self.random = random
 
 
 class Solution:
-    def oddEvenList(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        if head is None:
+    def copyRandomList(self, head: "Optional[Node]") -> "Optional[Node]":
+        if not head:
             return
 
-        odd = head
-        even = odd.next
-        even_head = head.next
+        curr = head
+        nodes = {}
 
-        while even and even.next:
-            odd.next = odd.next.next
-            odd = odd.next
-            even.next = even.next.next
-            even = even.next
+        while curr:
+            nodes[curr] = Node(curr.val)
+            curr = curr.next
 
-        odd.next = even_head
+        curr = head
 
-        return head
+        while curr:
+            nodes[curr].next = nodes.get(curr.next)
+            nodes[curr].random = nodes.get(curr.random)
+            curr = curr.next
+
+        return nodes[head]
