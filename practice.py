@@ -1,17 +1,34 @@
+# Definition for singly-linked list.
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+
 class Solution:
-    def wordPattern(self, pattern: str, s: str) -> bool:
-        s = s.split()
-        my_dict = dict()
+    def addTwoNumbers(
+        self, l1: Optional[ListNode], l2: Optional[ListNode]
+    ) -> Optional[ListNode]:
+        start = ListNode(0)
+        curr = start
 
-        if len(pattern) != len(s):
-            return False
-        if len(set(pattern)) != len(set(s)):
-            return False
+        carry = 0
 
-        for i in range(len(s)):
-            if pattern[i] in my_dict:
-                if s[i] != my_dict.get(pattern[i]):
-                    return False
-            else:
-                my_dict[pattern[i]] = s[i]
-        return True
+        while l1 or l2 or carry:
+            val_1 = l1.val if l1 else 0
+            val_2 = l2.val if l2 else 0
+
+            total = carry + val_1 + val_2
+
+            carry = total // 10
+
+            curr.next = ListNode(total % 10)
+
+            curr = curr.next
+
+            if l1:
+                l1 = l1.next
+            if l2:
+                l2 = l2.next
+
+        return start.next
