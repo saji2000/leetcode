@@ -1,34 +1,14 @@
-# Definition for singly-linked list.
-class ListNode:
-    def __init__(self, val=0, next=None):
-        self.val = val
-        self.next = next
-
-
 class Solution:
-    def addTwoNumbers(
-        self, l1: Optional[ListNode], l2: Optional[ListNode]
-    ) -> Optional[ListNode]:
-        start = ListNode(0)
-        curr = start
+    def coinChange(self, coins: List[int], amount: int) -> int:
+        minCoins = [amount + 1] * (amount + 1)
+        minCoins[0] = 0
 
-        carry = 0
+        for i in range(amount + 1):
+            for coin in coins:
+                if coin <= i:
+                    minCoins[i] = min(minCoins[i], minCoins[i - coin] + 1)
 
-        while l1 or l2 or carry:
-            val_1 = l1.val if l1 else 0
-            val_2 = l2.val if l2 else 0
+        if minCoins[amount] == amount + 1:
+            return -1
 
-            total = carry + val_1 + val_2
-
-            carry = total // 10
-
-            curr.next = ListNode(total % 10)
-
-            curr = curr.next
-
-            if l1:
-                l1 = l1.next
-            if l2:
-                l2 = l2.next
-
-        return start.next
+        return minCoins[amount]
