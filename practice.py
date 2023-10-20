@@ -1,14 +1,14 @@
 class Solution:
-    def coinChange(self, coins: List[int], amount: int) -> int:
-        minCoins = [amount + 1] * (amount + 1)
-        minCoins[0] = 0
+    def fizzBuzz(self, n: int) -> List[str]:
+        ans = []
+        for i in range(1, n + 1):
+            if i % 5 == 0 and i % 3 == 0:
+                ans.append("FizzBuzz")
+            elif i % 3 == 0:
+                ans.append("Fizz")
+            elif i % 5 == 0:
+                ans.append("Buzz")
+            else:
+                ans.append(str(i))
 
-        for i in range(amount + 1):
-            for coin in coins:
-                if coin <= i:
-                    minCoins[i] = min(minCoins[i], minCoins[i - coin] + 1)
-
-        if minCoins[amount] == amount + 1:
-            return -1
-
-        return minCoins[amount]
+        return ans
