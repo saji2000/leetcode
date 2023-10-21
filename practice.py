@@ -1,14 +1,14 @@
 class Solution:
-    def fizzBuzz(self, n: int) -> List[str]:
-        ans = []
-        for i in range(1, n + 1):
-            if i % 5 == 0 and i % 3 == 0:
-                ans.append("FizzBuzz")
-            elif i % 3 == 0:
-                ans.append("Fizz")
-            elif i % 5 == 0:
-                ans.append("Buzz")
-            else:
-                ans.append(str(i))
+    def gcd(self, a, b):
+        return a if b == 0 else self.gcd(b, a % b)
 
-        return ans
+    def gcdOfStrings(self, str1: str, str2: str) -> str:
+        n1 = len(str1)
+        n2 = len(str2)
+
+        if str1 + str2 != str2 + str1:
+            return ""
+
+        gcd_length = self.gcd(n1, n2)
+
+        return str1[:gcd_length]
