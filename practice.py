@@ -7,7 +7,7 @@ class Solution:
         l = 0
         r = 0
 
-        while r < len(nums):
+        while r < len(nums) - 1:
             if nums[r] != nums[r + 1] - 1:
                 if l == r:
                     ans.append(str(nums[r]))
