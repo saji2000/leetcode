@@ -1,24 +1,19 @@
+# Definition for a binary tree node.
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+
 class Solution:
-    def summaryRanges(self, nums: List[int]) -> List[str]:
-        if not nums:
+    def pruneTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+        if not root:
             return
-        ans = []
 
-        l = 0
-        r = 0
+        root.left = self.pruneTree(root.left)
+        root.right = self.pruneTree(root.right)
 
-        while r < len(nums) - 1:
-            if nums[r] != nums[r + 1] - 1:
-                if l == r:
-                    ans.append(str(nums[r]))
-                else:
-                    ans.append(str(nums[l]) + "->" + str(nums[r]))
-                    l = r + 1
-            r += 1
-
-        if l == r:
-            ans.append(str(nums[l]))
-        else:
-            ans.append(str(nums[l]) + "->" + str(nums[r]))
-
-        return ans
+        if not root.left and not root.right and root.val == 0:
+            return None
+        return root
