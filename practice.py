@@ -1,16 +1,24 @@
 class Solution:
-    def countPrimes(self, n: int) -> int:
-        if n <= 2:
-            return 0
+    def summaryRanges(self, nums: List[int]) -> List[str]:
+        if not nums:
+            return
+        ans = []
 
-        is_prime = [True] * n
-        is_prime[0] = is_prime[1] = False
+        l = 0
+        r = 0
 
-        for num in range(2, int(n**0.5) + 1):
-            if is_prime[num]:
-                for multiple in range(num * num, n, num):
-                    is_prime[multiple] = False
+        while r < len(nums):
+            if nums[r] != nums[r + 1] - 1:
+                if l == r:
+                    ans.append(str(nums[r]))
+                else:
+                    ans.append(str(nums[l]) + "->" + str(nums[r]))
+                    l = r + 1
+            r += 1
 
-        count = sum(is_prime)
+        if l == r:
+            ans.append(str(nums[l]))
+        else:
+            ans.append(str(nums[l]) + "->" + str(nums[r]))
 
-        return count
+        return ans
