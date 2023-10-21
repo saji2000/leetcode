@@ -1,14 +1,16 @@
 class Solution:
-    def gcd(self, a, b):
-        return a if b == 0 else self.gcd(b, a % b)
+    def countPrimes(self, n: int) -> int:
+        if n <= 2:
+            return 0
 
-    def gcdOfStrings(self, str1: str, str2: str) -> str:
-        n1 = len(str1)
-        n2 = len(str2)
+        is_prime = [True] * n
+        is_prime[0] = is_prime[0] = True
 
-        if str1 + str2 != str2 + str1:
-            return ""
+        for num in range(2, int(n**0.5) + 1):
+            if is_prime[num]:
+                for multiple in range(num * num, n, num):
+                    is_prime[multiple] = False
 
-        gcd_length = self.gcd(n1, n2)
+        count = sum(is_prime)
 
-        return str1[:gcd_length]
+        return count
