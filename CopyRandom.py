@@ -3,19 +3,19 @@ class Solution:
         if not head:
             return None
 
-        copy = {}
+        my_dict = {}
 
         curr = head
 
         while curr:
-            copy[curr] = Node(curr.val)
+            my_dict[curr] = ListNode(curr.val)
             curr = curr.next
 
         curr = head
 
         while curr:
-            copy[curr].next = copy.get(curr.next)
-            copy[curr].random = copy.get(curr.random)
+            my_dict[curr].next = my_dict.get(curr.next)
+            my_dict[curr].random = my_dict.get(curr.random)
             curr = curr.next
 
-        return copy[head]
+        return my_dict[head]

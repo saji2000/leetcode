@@ -1,4 +1,3 @@
-# Definition for a binary tree node.
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
         self.val = val
@@ -9,11 +8,12 @@ class TreeNode:
 class Solution:
     def pruneTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
         if not root:
-            return
+            return None
 
         root.left = self.pruneTree(root.left)
         root.right = self.pruneTree(root.right)
 
-        if not root.left and not root.right and root.val == 0:
+        if root.right is None and root.left is None and root.val == 0:
             return None
+
         return root
