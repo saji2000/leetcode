@@ -1,0 +1,56 @@
+# Ignore system-specific and temporary files
+.DS_Store
+Thumbs.db
+*.swp
+*.log
+
+# Ignore Python-specific files
+__pycache__/
+*.pyc
+
+# Ignore Node.js specific files
+node_modules/
+npm-debug.log
+
+# Ignore virtual environment files (if using virtualenv or venv)
+venv/
+myenv/
+.env
+
+# Ignore IDE/Editor-specific files
+.idea/
+.vscode/
+
+# Ignore compiled binaries and build output
+/build/
+/dist/
+/out/
+*.exe
+
+# Ignore local development files and configurations
+*.env.local
+.env.development
+.env.test
+.env.production
+
+# Ignore database files
+*.db
+*.sqlite
+
+# Ignore package manager configuration files
+package-lock.json
+yarn.lock
+
+# Ignore sensitive or private information
+config.json
+secrets.json
+
+# Ignore logs and generated files
+logs/
+*.log
+*.tar.gz
+
+# Ignore compiled files and directories
+*.class
+bin/
+target/
