@@ -1,7 +1,3 @@
-SELECT EmpId, Name
-FROM EMPLOYEE
-WHERE ManagerId = 986
-
 SELECT DISTINCT(Project)
 FROM Salary
 
