@@ -1,8 +1,6 @@
 class Solution:
-    def containsDuplicate(self, nums: List[int]) -> bool:
-        mySet = set()
-        for i in nums:
-            if i in mySet:
-                return True
-            mySet.add(i)
+    def isAnagram(self, s: str, t: str) -> bool:
+        if Counter(s) == Counter(t):
+            return True
         return False
+        
