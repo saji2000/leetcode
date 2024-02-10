@@ -1,13 +1,10 @@
 class Solution:
-    def twoSum(self, nums: List[int], target: int) -> List[int]:
-        num_map = {}
-
-        for i, num in enumerate(nums):
-            complement = target - num
-            if complement in num_map:
-                return [i, num_map[complement]]
-            num_map[num] = i
-        
-        return []
-
-        
+    def isPalindrome(self, s: str) -> bool:
+        s = s.lower()
+        myString = ""
+        for i in s:
+            if i.isalnum():
+                myString += i
+        if myString == myString[::-1]:
+            return True
+        return False
