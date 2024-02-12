@@ -1,10 +1,11 @@
 class Solution:
-    def maxProfit(self, prices: List[int]) -> int:
-        profit = 0
-        buy = prices[0]
-        for sell in prices[1:]:
-            if sell > buy:
-                profit = max(profit, sell - buy)
-            else:
-                buy = sell
-        return profit
+    def isValid(self, s: str) -> bool:
+        tags = {'(': ')', '[': ']', '{': '}'}
+        queue = []
+
+        for i in s:
+            if i in '({[':
+                queue.append()
+            elif len(queue) == 0 or i != tags[queue.pop()]:
+                return False
+        return len(queue) == 0
