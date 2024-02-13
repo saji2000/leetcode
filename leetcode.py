@@ -1,11 +1,18 @@
+# Definition for singly-linked list.
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
 class Solution:
-    def isValid(self, s: str) -> bool:
-        tags = {'(': ')', '[': ']', '{': '}'}
-        queue = []
-
-        for i in s:
-            if i in '({[':
-                queue.append(i)
-            elif len(queue) == 0 or i != tags[queue.pop()]:
-                return False
-        return len(queue) == 0
+    def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        if not head:
+            return 
+        
+        prev = None
+        curr = head
+        while curr:
+            next = curr.next
+            curr.next = prev
+            prev = curr
+            curr = next
+        return prev
