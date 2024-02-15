@@ -3,14 +3,13 @@ class Solution:
     def hasCycle(self, head: Optional[ListNode]) -> bool:
         if not head:
             return 
-        
-        curr = head
+        mySet = set()
 
-        while curr.next and curr.next.next:
-            curr = curr.next.next
-            head = head.next
-            if curr == head:
+        while head.next:
+            if head in mySet:
                 return True
+            mySet.add(head)
+            head = head.next
         return False
         
 
