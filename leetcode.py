@@ -13,3 +13,10 @@ class Solution:
             return False
 
         return self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right)
+    
+    def isSubTree(self, root: Optional[TreeNode], subRoot: Optional[TreeNode]) -> bool:
+        if root is None:
+            return False
+        if self.isSameTree(root, subRoot):
+            return True
+        return self.isSubTree(root.left, subRoot.left) and self.isSubTree(root.right, subRoot)
