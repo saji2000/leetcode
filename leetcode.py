@@ -1,14 +1,12 @@
+class Interval:
+    def __init__(self, start, end):
+        self.start = start
+        self.end = end
 class Solution:
-    memo = {}
-    def climbStairs(self, n: int) -> int:
-        if n == 1:
-            return 1
-        if n == 2:
-            return 2
-        if (n-1) not in self.memo:
-            self.memo[n-1] = self.climbStairs(n-1)
-        if (n-2) not in self.memo:
-            self.memo[n-2] = self.climbStairs(n-2)
-        
-        return self.memo[n-1] + self.memo[n-2]
-        
+    def canAttendMeetings(intervals):
+        intervals.sort(key=lambda x: x.start)
+    
+        for i in range(len(intervals) - 1):
+            if intervals[i].end > intervals[i+1].start:
+                return False
+        return True
