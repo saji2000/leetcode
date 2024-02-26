@@ -1,5 +1,7 @@
 class Solution:
     def reverseBits(self, n: int) -> int:
-        n = format(n, 'b')
-        n = n.zfill(32)
-        return int(n[::-1], 2)
+        res = 0
+        for _ in range(32):
+            res = (res << 1) | (n & 1)
+            n = n >> 1
+        return res
