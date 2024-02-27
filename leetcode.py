@@ -1,7 +1,7 @@
 class Solution:
-    def reverseBits(self, n: int) -> int:
-        res = 0
-        for _ in range(32):
-            res = (res << 1) | (n & 1)
-            n = n >> 1
-        return res
+    def missingNumber(self, nums: List[int]) -> int:
+        nums.sort()
+        for i in range(len(nums)):
+            if i != nums[i]:
+                return i
+        return nums[-1] + 1
