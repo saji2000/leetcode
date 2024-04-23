@@ -1,8 +1,11 @@
 class Solution:
-    def isPalindrome(self, s: str) -> bool:
-        s = s.lower()
-        myString = ""
-        for i in s:
-            if i.isalnum():
-                myString += i
-        return myString == myString[::-1]
+    def maxProfit(self, prices: List[int]) -> int:
+        buy = prices[0]
+        profit  = 0
+
+        for sell in prices:
+            if sell < buy:
+                buy = sell
+            else:
+                profit = max(profit, sell - buy)
+        return profit
