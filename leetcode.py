@@ -1,8 +1,9 @@
 class Solution:
-    def containsDuplicate(self, nums: List[int]) -> bool:
-        mySet = set()
-        for i in nums:
-            if i in mySet:
-                return True
-            mySet.add(i)
-        return False
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        myDict = dict()
+
+        for i in range(len(nums)):
+            if target - nums[i] in myDict:
+                return [i, myDict[target - nums[i]]]
+            myDict[nums[i]] = i
+        return
