@@ -1,7 +1,17 @@
 class Solution:
-    def maxProfit(self, prices: List[int]) -> int:
-        profit = 0
-        for buy in range(len(prices)):
-            for sell in range(buy + 1, len(prices)):
-                profit = max(profit, prices[sell] - prices[buy])
-        return profit
+    def isValid(self, s: str) -> bool:
+        stack = []
+        for i in s:
+            if i in "({[":
+                stack.append(i)
+            elif len(stack) > 0:
+                pop = stack.pop()
+                if i == ")" and pop != "(":
+                    return False
+                elif i == "}" and pop != "{":
+                    return False
+                elif i == "]" and pop != "[":
+                    return False
+            else:
+                return False
+        return len(stack) == 0
