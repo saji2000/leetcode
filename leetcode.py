@@ -1,17 +1,15 @@
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
 class Solution:
-    def isValid(self, s: str) -> bool:
-        stack = []
-        for i in s:
-            if i in "({[":
-                stack.append(i)
-            elif len(stack) > 0:
-                pop = stack.pop()
-                if i == ")" and pop != "(":
-                    return False
-                elif i == "}" and pop != "{":
-                    return False
-                elif i == "]" and pop != "[":
-                    return False
-            else:
-                return False
-        return len(stack) == 0
+    def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        next = None
+
+        while head is not None:
+            next_node = head.next
+            head.next = next
+            next = head  
+            head = next_node
+        return next
