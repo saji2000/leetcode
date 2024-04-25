@@ -1,19 +1,15 @@
-# Definition for singly-linked list.
-# class ListNode:
-#     def __init__(self, x):
-#         self.val = x
-#         self.next = None
-
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
 class Solution:
-    def hasCycle(self, head: Optional[ListNode]) -> bool:
-        if not head:
+    def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+        if not root:
             return
-        mySet = set()
+        left = root.left
+        root.left = self.invertTree(root.right)
+        root.right = self.invertTree(left)
 
-        while head:
-            if head in mySet:
-                return True
-            mySet.add(head)
-            head = head.next
-        return False
-        
+        return root
