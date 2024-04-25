@@ -1,16 +1,25 @@
 # Definition for singly-linked list.
-# class ListNode:
-#     def __init__(self, val=0, next=None):
-#         self.val = val
-#         self.next = next
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
 class Solution:
-    def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        if not head or not head.next:
-            return head
-        
-        reversed_list = self.reverseList(head.next)
+    def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
 
-        head.next.next = head
-        head.next = None
+        ans = ListNode()
+        head = ans
 
-        return reversed_list
+        while list1 and list2:
+            if list1.val < list2.val:
+                ans.next = list1
+                list1 = list1.next
+            else:
+                ans.next = list2
+                list2 = list2.next
+            ans = ans.next
+
+        if not list1 and list2:
+            ans.next = list2
+        elif not list2 and list1:
+            ans.next = list1
+        return head.next
