@@ -1,24 +1,18 @@
 # Definition for singly-linked list.
-class ListNode:
-    def __init__(self, val=0, next=None):
-        self.val = val
-        self.next = next
-class Solution:
-    def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
 
-        if not list1 and not list2:
-            return
+class Solution:
+    def hasCycle(self, head: Optional[ListNode]) -> bool:
+        if not head: return
+        slow = fast = head
+
+        while fast.next and fast.next.next:
+            fast = fast.next.next
+            slow = slow.next
+            if fast == slow:
+                return True
+        return False
         
-        if not list1:
-            return list2
-        elif not list2:
-            return list1
-        
-        if list1.val < list2.val:
-            head = list1
-            head.next = self.mergeTwoLists(list1.next, list2)
-        else:
-            head = list2
-            head.next = self.mergeTwoLists(list1, list2.next)
-        
-        return head
