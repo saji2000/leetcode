@@ -1,12 +1,16 @@
+"""
+Definition of Interval:
+class Interval(object):
+    def __init__(self, start, end):
+        self.start = start
+        self.end = end
+"""
+
 class Solution:
-    memo = {}
-    def climbStairs(self, n: int) -> int:
-        if n == 0 or n == 1 or n == 2:
-            return n
-
-        if n in self.memo:
-            return self.memo[n]
-        else:
-            self.memo[n] = self.climbStairs(n-1) + self.climbStairs(n-2)
-
-        return self.memo[n]
+    def canAttendMeetings(self, intervals: List[Interval]) -> bool:
+        intervals.sort(key=lambda i: i.start)
+        for i in range(len(intervals)):
+            for j in range(i + 1, len(intervals)):
+                if intervals[i].end > intervals[j].start:
+                    return False
+        return True
