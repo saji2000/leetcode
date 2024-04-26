@@ -9,8 +9,7 @@ class Interval(object):
 class Solution:
     def canAttendMeetings(self, intervals: List[Interval]) -> bool:
         intervals.sort(key=lambda i: i.start)
-        for i in range(len(intervals)):
-            for j in range(i + 1, len(intervals)):
-                if intervals[i].end > intervals[j].start:
-                    return False
+        for i in range(0, len(intervals) - 1):
+            if intervals[i].end > intervals[i + 1].start:
+                return False
         return True
