@@ -1,7 +1,7 @@
 class Solution:
-    def countBits(self, n: int) -> List[int]:
-        ans = [0] * (n + 1)
-        for i in range(len(ans)):
-            ans[i] = i.bit_count()
-        return ans
-        
+    def reverseBits(self, n: int) -> int:
+        reverse = 0
+        for _ in range(32):
+            reverse = reverse << 1 | n & 1
+            n = n >> 1
+        return reverse
