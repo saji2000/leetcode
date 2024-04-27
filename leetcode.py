@@ -8,6 +8,4 @@ class Solution:
             if myStr not in myDict:
                 myDict[myStr] = []
             myDict[myStr].append(strs[i])
-        for i in myDict.values():
-            ans.append(i)
-        return ans
+        return myDict.values()
