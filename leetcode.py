@@ -1,5 +1,15 @@
 class Solution:
-    def missingNumber(self, nums: List[int]) -> int:
-        n = len(nums)
-        summation = (n * (n + 1)) // 2
-        return summation - sum(nums) 
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        myDict = dict()
+        ans = []
+        for i in range(len(strs)):
+            myStr = strs[i]
+            myStr = ''.join(sorted(myStr))
+            if myStr in myDict:
+                myDict[myStr].append(strs[i])
+            else:
+                myDict[myStr] = []
+                myDict[myStr].append(strs[i])
+        for i in myDict.values():
+            ans.append(i)
+        return ans
