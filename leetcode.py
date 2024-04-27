@@ -1,11 +1,13 @@
 class Solution:
-    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
         myDict = dict()
-        ans = []
-        for i in range(len(strs)):
-            myStr = strs[i]
-            myStr = ''.join(sorted(myStr))
-            if myStr not in myDict:
-                myDict[myStr] = []
-            myDict[myStr].append(strs[i])
-        return myDict.values()
+
+        for i in nums:
+            if i in myDict:
+                myDict[i] += 1
+            else:
+                myDict[i] = 1
+        
+        values = sorted(myDict.keys(), key = lambda i: myDict[i], reverse=True)
+
+        return values[:k]
