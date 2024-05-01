@@ -1,20 +1,18 @@
 class Solution:
+    def productExceptSelf(self, nums: List[int]) -> List[int]:
+        n = len(nums)
+        result = [1] * n
 
-    def encode(self, strs: List[str]) -> str:
-        encoded = ""
-        for i in strs:
-            encoded += str(len(i)) + "#" + i 
-        return encoded
-    
-    def decode(self, s: str) -> List[str]:
-        decoded = []
-        i = 0
+        prefixProduct = 1
 
-        while i < len(s):
-            j = i
-            while s[j] != "#":
-                j += 1
-            length = int(str(s[i:j]))
-            decoded.append(s[j + 1 : j + 1 + length])
-            i = j + 1 + length
-        return decoded
+        for i in range(n):
+            result[i] *= prefixProduct
+            prefixProduct *= nums[i]
+        
+        suffixProduct = 1
+
+        for i in reversed(range(n)):
+            result[i] *= suffixProduct
+            suffixProduct *= nums[i]
+        
+        return result
