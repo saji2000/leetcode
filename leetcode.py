@@ -1,9 +1,20 @@
 class Solution:
-    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
-        myDict = {}
-        for i in nums:
-            if i not in myDict:
-                myDict[i] = 1
-            else:
-                myDict[i] += 1
-        return sorted(myDict.keys(), key = lambda i: myDict[i], reverse=True)[:k]
+
+    def encode(self, strs: List[str]) -> str:
+        encoded = ""
+        for i in strs:
+            encoded += str(len(i)) + "#" + i
+        return encoded
+    
+    def decode(self, s: str) -> List[str]:
+        decoded = []
+        i = 0
+        while i < len(s):
+            length_str = ""
+            while s[i] != "#":
+                length_str += s[i]
+                i += 1
+            number = int(length_str)
+            decoded.append(s[i + 1 : i + 1 + number])            
+            i += 1 + number
+        return decoded
