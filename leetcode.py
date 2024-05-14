@@ -1,20 +1,32 @@
-class Solution:
+class RandomizedSet:
 
-    def encode(self, strs: List[str]) -> str:
-        encoded = ""
-        for i in strs:
-            encoded += str(len(i)) + "#" + i
-        return encoded
-    
-    def decode(self, s: str) -> List[str]:
-        decoded = []
-        i = 0
-        while i < len(s):
-            length_str = ""
-            while s[i] != "#":
-                length_str += s[i]
-                i += 1
-            number = int(length_str)
-            decoded.append(s[i + 1 : i + 1 + number])            
-            i += 1 + number
-        return decoded
+    def __init__(self):
+        self.map = {}
+        self.list = []
+
+    def insert(self, val: int) -> bool:
+        if val not in self.map:
+            self.map[val] = len(self.list)
+            self.list.append(val)
+            return True
+        return False
+
+    def remove(self, val: int) -> bool:
+        if val in self.map:
+            index = self.map[val]
+            lastVal = self.list[-1]
+            self.list[index] = lastVal
+            self.map[lastVal] = index
+            self.list.pop()
+            del self.map[val]
+            return True
+        return False
+    def getRandom(self) -> int:
+        return random.choice(self.list)
+
+
+# Your RandomizedSet object will be instantiated and called as such:
+# obj = RandomizedSet()
+# param_1 = obj.insert(val)
+# param_2 = obj.remove(val)
+# param_3 = obj.getRandom()
