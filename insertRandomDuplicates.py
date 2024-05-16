@@ -1,6 +1,9 @@
+import collections
+import random
+
 class RandomizedCollection:
     def __init__(self):
-        self.map = defaultdict(set)
+        self.map = collections.defaultdict(set)
         self.list = []
         
     def insert(self, val: int) -> bool:
@@ -19,11 +22,12 @@ class RandomizedCollection:
         self.list.pop()
         return True
     def getRandom(self) -> int:
-        return random.choice(self.list)
+        return self.list[random.randint(0, len(self.list) - 1)]
 
 
 # Your RandomizedCollection object will be instantiated and called as such:
-# obj = RandomizedCollection()
-# param_1 = obj.insert(val)
-# param_2 = obj.remove(val)
-# param_3 = obj.getRandom()
+obj = RandomizedCollection()
+param_1 = obj.insert(1)
+param_2 = obj.remove(2)
+param_3 = obj.getRandom()
+print(param_1, param_2, param_3)

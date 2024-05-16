@@ -54,3 +54,6 @@ logs/
 *.class
 bin/
 target/
+
+affirm.py
+affirm2.py
