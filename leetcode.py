@@ -1,14 +1,13 @@
 class Solution:
-    def productExceptSelf(self, nums: List[int]) -> List[int]:
-        n = len(nums)
-        product = [1] * n
-        pre_product = 1
-        for i in range(n):
-            product[i] *= pre_product
-            pre_product *= nums[i]
-        suf_product = 1
-        for i in reversed(range(n)):
-            product[i] *= suf_product
-            suf_product *= nums[i]
-        
-        return product
+    def longestConsecutive(self, nums: List[int]) -> int:
+        mySet = set(nums)
+        maxLength = 0
+        for i in nums:
+            if i - 1 not in mySet:
+                ptr = i
+                length = 1
+                while ptr + 1 in mySet:
+                    length += 1
+                    ptr += 1
+                maxLength = max(maxLength, length)
+        return maxLength
