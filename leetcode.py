@@ -1,13 +1,28 @@
 class Solution:
-    def longestConsecutive(self, nums: List[int]) -> int:
-        mySet = set(nums)
-        maxLength = 0
-        for i in nums:
-            if i - 1 not in mySet:
-                ptr = i
-                length = 1
-                while ptr + 1 in mySet:
-                    length += 1
-                    ptr += 1
-                maxLength = max(maxLength, length)
-        return maxLength
+    def threeSum(self, nums: List[int]) -> List[List[int]]:
+        ans = []
+        nums.sort()
+
+        for i in range(len(nums) - 1):
+            if i > 0 and nums[i] == nums[i - 1]:
+                continue
+            l = i + 1
+            r = len(nums) - 1
+            while l < r:
+                complement = nums[i] + nums[l] + nums[r]
+                if complement < 0:
+                    l += 1
+                elif complement > 0:
+                    r -= 1
+                else:
+                    ans.append([nums[i], nums[l], nums[r]])
+                    l += 1
+                    r -= 1
+                    while l < r and nums[l] == nums[l + 1]:
+                        l += 1
+                    while l < r and nums[r] == nums[r - 1]:
+                        r -= 1
+        return ans
+                
+
+    
