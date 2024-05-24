@@ -1,15 +1,12 @@
 class Solution:
-    def maxArea(self, height: List[int]) -> int:
-        maxArea = 0
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        length = 0
+        sub = set()
         l = 0
-        r = len(height) - 1
-
-        while l < r:
-            area = (r - l) * min(height[l], height[r])
-            maxArea = max(maxArea, area)
-            if height[l] < height[r]:
+        for i in range(len(s)):
+            while s[i] in sub:
+                sub.remove(s[l])
                 l += 1
-            else:
-                r -= 1
-        return maxArea
-
+            sub.add(s[i])
+            length = max(length, len(sub))
+        return length
