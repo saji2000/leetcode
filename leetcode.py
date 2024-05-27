@@ -1,17 +1,12 @@
 class Solution:
-    def characterReplacement(self, s: str, k: int) -> int:
-        sub = {}
-        l = 0
-        length = 0
-        for r in range(len(s)):
-            if s[r] in sub:
-                sub[s[r]] += 1
-            else:
-                sub[s[r]] = 1
+    def findMin(self, nums: List[int]) -> int:
+        l, r = 0, len(nums) - 1
 
-            if (r - l + 1) - max(sub.values()) > k:
-                sub[s[l]] -= 1
-                l += 1
-            length = max(length, r - l + 1)
-        return length
+        while l < r:
+            mid = (r + l)//2
             
+            if nums[mid] > nums[r]:
+                l = mid + 1
+            else:
+                r = mid
+        return nums[l]
