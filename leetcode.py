@@ -1,12 +1,22 @@
 class Solution:
-    def findMin(self, nums: List[int]) -> int:
-        l, r = 0, len(nums) - 1
+    def numIslands(self, grid: List[List[str]]) -> int:
 
-        while l < r:
-            mid = (r + l)//2
-            
-            if nums[mid] > nums[r]:
-                l = mid + 1
-            else:
-                r = mid
-        return nums[l]
+        if not grid:
+            return
+        
+        def dfs(i, j):
+            if i < 0 or i >= len(grid) or j < 0 or j >= len(grid[i]) or grid[i][j] != '1':
+                return
+            grid[i][j] = 0
+            dfs(i + 1, j)
+            dfs(i - 1, j)
+            dfs(i, j + 1)
+            dfs(i, j - 1)
+
+        count = 0
+        for i in range(len(grid)):
+            for j in range(len(grid[i])):
+                if grid[i][j] == '1':
+                    count += 1
+                    dfs(i, j)
+        return count
