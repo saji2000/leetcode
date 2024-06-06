@@ -1,4 +1,5 @@
 class Solution:
+    # number of islands
     def numIslands(self, grid: List[List[str]]) -> int:
 
         if not grid:
