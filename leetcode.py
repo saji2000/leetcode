@@ -1,23 +1,29 @@
-class Solution:
-    # number of islands
-    def numIslands(self, grid: List[List[str]]) -> int:
+class Logger:
+    def __init__(self):
+        """
+        Initialize your data structure here.
+        """
+        self.messages = {}
 
-        if not grid:
-            return
-        
-        def dfs(i, j):
-            if i < 0 or i >= len(grid) or j < 0 or j >= len(grid[i]) or grid[i][j] != '1':
-                return
-            grid[i][j] = 0
-            dfs(i + 1, j)
-            dfs(i - 1, j)
-            dfs(i, j + 1)
-            dfs(i, j - 1)
+    def shouldPrintMessage(self, timestamp: int, message: str) -> bool:
+        """
+        Returns true if the message should be printed in the given timestamp, otherwise returns false.
+        If this method returns false, the message will not be printed.
+        The timestamp is in seconds granularity.
+        """
+        print(self.messages)
+        if message not in self.messages:
+            self.messages[message] = timestamp
+            return True
+        if  timestamp < self.messages[message] + 10:
+            self.messages[message] = timestamp
+            return False
+        return True
 
-        count = 0
-        for i in range(len(grid)):
-            for j in range(len(grid[i])):
-                if grid[i][j] == '1':
-                    count += 1
-                    dfs(i, j)
-        return count
+logger = Logger()
+print(logger.shouldPrintMessage(1, "foo")); 
+print(logger.shouldPrintMessage(2, "bar")); 
+print(logger.shouldPrintMessage(3, "foo"));  
+print(logger.shouldPrintMessage(8, "bar"));  
+print(logger.shouldPrintMessage(10, "foo")); 
+print(logger.shouldPrintMessage(11, "foo")); 
