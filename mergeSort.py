@@ -1,38 +1,36 @@
 class Sort:
     def mergeSort(self, arr):
         n = len(arr)
-        if n > 1:
-            left = arr[:n//2]
-            right = arr[n//2:]
 
-            self.mergeSort(left)
-            self.mergeSort(right)
+        if n > 1:
+            left_arr = arr[:n//2]
+            right_arr = arr[n//2:]
+
+            self.mergeSort(left_arr)
+            self.mergeSort(right_arr)
 
             i = 0
             j = 0
             k = 0
 
-            while i < len(left) and j < len(right):
-                if left[i] > right[j]:
-                    arr[k] = right[j]
+            while i < len(left_arr) and j < len(right_arr):
+                if left_arr[i] > right_arr[j]:
+                    arr[k] = right_arr[j]
                     j += 1
                 else:
-                    arr[k] = left[i]
+                    arr[k] = left_arr[i]
                     i += 1
                 k += 1
-
-            # Add remaining elements from left
-            while i < len(left):
-                arr[k] = left[i]
-                i += 1
-                k += 1
-
-            # Add remaining elements from right
-            while j < len(right):
-                arr[k] = right[j]
-                j += 1
-                k += 1
-                
+            
+            if k < n:
+                while i < len(left_arr):
+                    arr[k] = left_arr[i]
+                    i += 1
+                    k += 1
+                while j < len(right_arr):
+                    arr[k] = right_arr[j]
+                    j += 1
+                    k += 1
         return arr
 
 
