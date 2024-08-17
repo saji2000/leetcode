@@ -5,7 +5,7 @@ class Solution:
 
         def dfs(node):
             if not node:
-                return None
+                return
             
             res = node
             if node.val in to_delete:
@@ -17,4 +17,5 @@ class Solution:
             node.right = dfs(node.right)
             return res
         dfs(root)
-        return remaining_roots
+
+        return list(remaining_roots)
