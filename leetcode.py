@@ -1,21 +1,19 @@
-class Solution:
-    def delNodes(self, root: Optional[TreeNode], to_delete: List[int]) -> List[TreeNode]:
-        to_delete = set(to_delete)
-        remaining_roots = set([root])
+class Logger:
+    message_times = {}
+    def shouldPrintMessage(self, message, timestamp):
 
-        def dfs(node):
-            if not node:
-                return
-            
-            res = node
-            if node.val in to_delete:
-                res = None
-                remaining_roots.discard(node)
-                if node.left: remaining_roots.add(node.left)
-                if node.right: remaining_roots.add(node.right)
-            node.left = dfs(node.left)
-            node.right = dfs(node.right)
-            return res
-        dfs(root)
+        if message not in self.message_times:
+            self.message_times[message] = timestamp
+            return True
+        if self.message_times[message] + 10 <= timestamp:
+            self.message_times[message] = timestamp
+            return True
+        return False
+    
+logger = Logger()
+print(logger.shouldPrintMessage("foo", 1))
+print(logger.shouldPrintMessage("foo", 2))
+print(logger.shouldPrintMessage("boo", 1))
+print(logger.shouldPrintMessage("foo", 11))
+print(logger.shouldPrintMessage("boo", 10))
 
-        return list(remaining_roots)
