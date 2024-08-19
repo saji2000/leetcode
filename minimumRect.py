@@ -1,5 +1,4 @@
 from math import inf
-
 class Solution:
     def minAreaRect(self, points: List[List[int]]) -> int:
         seen = set()

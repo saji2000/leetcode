@@ -1,11 +1,15 @@
 class Logger:
     message_times = {}
+
+    def cleanup(self, timestamp):
+        for i in self.message_times.keys():
+            if self.message_times[i] + 10 < timestamp:
+                del self.message_times[i]
     def shouldPrintMessage(self, message, timestamp):
 
-        if message not in self.message_times:
-            self.message_times[message] = timestamp
-            return True
-        if self.message_times[message] + 10 <= timestamp:
+        self.cleanup(timestamp)
+
+        if message not in self.message_times or self.message_times[message] + 10 <= timestamp:
             self.message_times[message] = timestamp
             return True
         return False
