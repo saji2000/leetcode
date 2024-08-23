@@ -1,11 +1,9 @@
 def delNodes(self, root: Optional[TreeNode], to_delete: List[int]) -> List[TreeNode]:
         to_delete = set(to_delete)
         remaining_roots = set([root])
-
         def dfs(node):
             if not node:
                 return
-            
             res = node
             if node.val in to_delete:
                 res = None
