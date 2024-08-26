@@ -5,12 +5,12 @@ class Solution:
 
         while l <= r:
             mid = (l + r)//2
-            if nums[mid] == target:
+            if target == nums[mid]:
                 return mid
-            elif nums[mid] < target:
-                l = mid + 1
-            else:
+            elif target < nums[mid]:
                 r = mid - 1
+            else:
+                l = mid + 1
         return -1
 solution = Solution()
-print(solution.search([0, 1, 5, 7, 9, 12], 10))
+print(solution.search([0, 1, 5, 7, 9, 12], 9))
