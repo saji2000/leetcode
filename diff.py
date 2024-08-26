@@ -17,7 +17,6 @@ def find_differences(obj1, obj2):
 	if isinstance(obj1, list) and isinstance(obj2, list):
 		diff = []
 		minLength = min(len(obj1), len(obj2))
-
 		for i in range(minLength):
 			nested_diff = find_differences(obj1[i], obj2[i])
 			if nested_diff:
