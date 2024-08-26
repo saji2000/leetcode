@@ -1,9 +1,11 @@
 class Logger:
     messageTimes = {}
-    def cleanup(self, timestamp):
+
+    def cleanup(self, time):
         deleteMessages = []
+
         for message in self.messageTimes.keys():
-            if self.messageTimes[message] + 10 < timestamp:
+            if self.messageTimes[message] + 10 < time:
                 deleteMessages.append(message)
         for message in deleteMessages:
             del self.messageTimes[message]
