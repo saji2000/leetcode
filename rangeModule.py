@@ -1,6 +1,6 @@
 class RangeModule:
     def __init__(self):
-        self.mySet = set()
+        self.intervals = []
 
     def addRange(self, left: int, right: int) -> None:
         for i in range(left, right):
