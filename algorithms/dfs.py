@@ -4,17 +4,17 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
+
+from math import inf
 class Solution:
-    def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
-        result = []
-
-        def dfs(self, node):
+    def isValidBST(self, root: Optional[TreeNode]) -> bool:
+        def valid(node, minimum, maximum):
             if not node:
-                return
-
-            result.append(dfs(node.left))
-            result.append(node) 
-            result.append(dfs(node.right))
+                return True
+            
+            if node.val <= minimum and node.val >= maximum:
+                return False
+            
+            return valid(node.left, minimum, node.val) and valid(node.right, node.val, maximum)
         
-        dfs(root)
-        return result
+        return valid(root, -inf, inf)
