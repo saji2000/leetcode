@@ -5,16 +5,18 @@
 #         self.left = left
 #         self.right = right
 
-from math import inf
 class Solution:
-    def isValidBST(self, root: Optional[TreeNode]) -> bool:
-        def valid(node, minimum, maximum):
+    def recoverTree(self, root: Optional[TreeNode]) -> None:
+        temp = []
+        def dfs(node):
             if not node:
-                return True
-            
-            if node.val <= minimum and node.val >= maximum:
-                return False
-            
-            return valid(node.left, minimum, node.val) and valid(node.right, node.val, maximum)
+                return 
+            dfs(node.left)
+            temp.append(node)
+            dfs(node.right)
         
-        return valid(root, -inf, inf)
+        dfs(root)
+
+        sort = sorted(n.val for n in temp)
+        for i in range(len(temp)):
+            temp[i].val = sort[i]
