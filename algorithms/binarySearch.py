@@ -1,3 +1,4 @@
+#Binary Search solution
 class Solution:
     def search(self, nums, target) -> int:
         l = 0
