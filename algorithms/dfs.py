@@ -6,9 +6,6 @@
 #         self.right = right
 class Solution:
     def recoverTree(self, root: Optional[TreeNode]) -> None:
-        """
-        Do not return anything, modify root in-place instead.
-        """
         temp = []
         def dfs(node):
             if not node:
@@ -18,7 +15,9 @@ class Solution:
             dfs(node.right)
         
         dfs(root)
-        sorted_array = sorted(n.val for n in temp)
-        for i in range(len(sorted_array)):
-            temp[i].val = sorted_array[i]
+
+        values = sorted(n.val for n in temp)
+
+        for i in range(len(temp)):
+            temp[i].val = values[i]
         
