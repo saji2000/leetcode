@@ -7,17 +7,16 @@
 class Solution:
     def recoverTree(self, root: Optional[TreeNode]) -> None:
         temp = []
+
         def dfs(node):
             if not node:
                 return
             dfs(node.left)
             temp.append(node)
             dfs(node.right)
-        
         dfs(root)
-
         values = sorted(n.val for n in temp)
 
-        for i in range(len(temp)):
+        for i in range(len(values)):
             temp[i].val = values[i]
         
