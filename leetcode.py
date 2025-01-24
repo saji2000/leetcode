@@ -1,19 +1,11 @@
-class Logger:
-    message_times = {}
-    def shouldPrintMessage(self, message, timestamp):
+class Solution:
+    def containsDuplicate(self, nums: List[int]) -> bool:
+        mySet = set()
 
-        if message not in self.message_times:
-            self.message_times[message] = timestamp
-            return True
-        if self.message_times[message] + 10 <= timestamp:
-            self.message_times[message] = timestamp
-            return True
+        for i in nums:
+            if i not in mySet:
+                mySet.add(i)
+            else:
+                return True
         return False
-    
-logger = Logger()
-print(logger.shouldPrintMessage("foo", 1))
-print(logger.shouldPrintMessage("foo", 2))
-print(logger.shouldPrintMessage("boo", 1))
-print(logger.shouldPrintMessage("foo", 11))
-print(logger.shouldPrintMessage("boo", 10))
-
+        
