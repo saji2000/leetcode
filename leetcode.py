@@ -1,3 +1,10 @@
 class Solution:
-    def isAnagram(self, s: str, t: str) -> bool:
-        return sorted(s) == sorted(t)
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        dictionary = {}
+
+        for i in range(len(nums)):
+            complement = target - nums[i]
+            if complement in dictionary:
+                return dictionary[complement], i
+            dictionary[nums[i]] = i
+        return
