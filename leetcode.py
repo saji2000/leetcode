@@ -1,11 +1,6 @@
+from collections import Counter
 class Solution:
-    def containsDuplicate(self, nums: List[int]) -> bool:
-        mySet = set()
-
-        for i in nums:
-            if i not in mySet:
-                mySet.add(i)
-            else:
-                return True
+    def isAnagram(self, s: str, t: str) -> bool:
+        if Counter(s) == Counter(t):
+            return True
         return False
-        
