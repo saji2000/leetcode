@@ -1,10 +1,9 @@
 class Solution:
-    def twoSum(self, nums: List[int], target: int) -> List[int]:
-        dictionary = {}
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        myDict = defaultdict(list)
 
-        for i in range(len(nums)):
-            complement = target - nums[i]
-            if complement in dictionary:
-                return dictionary[complement], i
-            dictionary[nums[i]] = i
-        return
+        for i in strs:
+            sorted_word = "".join(sorted(i))
+            myDict[sorted_word].append(i)
+        
+        return list(myDict.values())
