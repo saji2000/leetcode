@@ -4,7 +4,6 @@ class Solution:
         encoded = ""
         for i in strs:
             encoded += (str(len(i))) + "#" + i
-        print(encoded)
         return encoded
 
     def decode(self, s: str) -> list[str]:
@@ -16,8 +15,6 @@ class Solution:
             decoded.append(s[pos + 1: pos + 1 + length])
             i = pos + length + 1
         return decoded
-
-
 
 
 solution = Solution()
