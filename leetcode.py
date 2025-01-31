@@ -9,6 +9,7 @@ class Solution:
     def decode(self, s: str) -> list[str]:
         decoded = []
         i = 0
+        
         while i < len(s):
             pos = s.find('#', i)
             length = int(s[i:pos])
