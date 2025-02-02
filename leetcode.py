@@ -3,3 +3,4 @@ class Solution:
         result = []
         for i in range(len(nums)):
             result[i] = i
+            s = 1
