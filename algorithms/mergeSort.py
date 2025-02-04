@@ -1,3 +1,4 @@
+# Merge Sort algorithm
 class Sort:
     def mergeSort(self, arr):
         n = len(arr)
