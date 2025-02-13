@@ -1,14 +1,13 @@
 class Solution:
-    def longestConsecutive(self, nums: List[int]) -> int:
-        mySet = set(nums)
-        maxLength = 0
-
-        for n in mySet:
-            if n - 1 not in mySet:
-                length = 1
-                while n + 1 in mySet:
-                    length += 1
-                    n += 1
-                maxLength = max(maxLength, length)
-        
-        return maxLength
+    def isValid(self, s: str) -> bool:
+        brackets = {")" : "(", "}": "{", "]": "["}
+        stack = []
+        for i in s:
+            if i in brackets.values():
+                stack.append(i)
+            elif not stack:
+                return False
+            else:
+                if stack.pop() != brackets[i]:
+                    return False
+        return not stack
