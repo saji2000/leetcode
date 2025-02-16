@@ -1,13 +1,9 @@
 class Solution:
-    def isValid(self, s: str) -> bool:
-        brackets = {")" : "(", "}": "{", "]": "["}
-        stack = []
+    def isPalindrome(self, s: str) -> bool:
+        myString = ""
+
         for i in s:
-            if i in brackets.values():
-                stack.append(i)
-            elif not stack:
-                return False
-            else:
-                if stack.pop() != brackets[i]:
-                    return False
-        return not stack
+            if i.isalnum():
+                myString += i
+        myString = myString.lower()
+        return myString == myString[::-1]
