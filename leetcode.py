@@ -1,13 +1,17 @@
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
 class Solution:
-    def maxProfit(self, prices: List[int]) -> int:
-        l = 0
-        maxProfit = 0
+    def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        node = head
+        prev = None
 
-        for r in range(1, len(prices)):
-            profit = prices[r] - prices[l]
-            maxProfit = max(profit, maxProfit)
-
-            if prices[r] <= prices[l]:
-                l = r
+        while node:
+            nextNode = node.next
+            node.next = prev
+            prev = node
+            node = nextNode
         
-        return maxProfit
+        return prev
