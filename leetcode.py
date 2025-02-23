@@ -16,16 +16,18 @@ class Solution:
         
         second = slow.next
         slow.next = None
+
         prev = None
         while second:
             temp = second.next
-            second.next = prev
+            second.next  = prev
             prev = second
             second = temp
         
-        second = prev
         first = head
-        while second:
+        second = prev
+
+        while first and second:
             temp1, temp2 = first.next, second.next
             first.next = second
             second.next = temp1
