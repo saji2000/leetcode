@@ -1,15 +1,16 @@
-# Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
 class Solution:
-    def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
-        if not root:
-            return 
-        right = root.right
-        root.right = self.invertTree(root.left)
-        root.left = self.invertTree(right)
+    def twoSum(self, numbers: List[int], target: int) -> List[int]:
+        l, r = 0, len(numbers) - 1
+
+        while l < r:
+            summation = numbers[l] + numbers[r]
+
+            if summation < target:
+                l += 1
+            elif summation > target:
+                r -= 1
+            else:
+                return [l + 1, r + 1]
         
-        return root
+        return 
+        
