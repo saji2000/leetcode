@@ -1,14 +1,31 @@
-class Solution:
-    def maxArea(self, height: List[int]) -> int:
-        l, r = 0, len(height) - 1
-        maximumArea = 0
+# import numpy as np
 
-        while l < r:
-            area = (r - l) * min(height[l], height[r])
-            maximumArea = max(maximumArea, area)
-            if height[l] < height[r]:
-                l += 1
-            else:
-                r -= 1
-                
-        return maximumArea
+class MinStack:
+
+    def __init__(self):
+        self.stack = []
+        self.minStack = []
+
+    def push(self, val: int) -> None:
+        self.stack.append(val)
+        if not self.minStack:
+            self.minStack.append(val)
+        else:
+            self.minStack.append(min(self.minStack[-1], val))
+    def pop(self) -> None:
+        del self.stack[-1]
+        del self.minStack[-1]
+
+    def top(self) -> int:
+        return self.stack[-1]
+
+    def getMin(self) -> int:
+        return self.minStack[-1]
+
+
+# Your MinStack object will be instantiated and called as such:
+# obj = MinStack()
+# obj.push(val)
+# obj.pop()
+# param_3 = obj.top()
+# param_4 = obj.getMin()
