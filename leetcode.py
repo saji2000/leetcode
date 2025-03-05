@@ -16,5 +16,4 @@ class Solution:
                 elif i == '*':
                     result = num1 * num2
                 stack.append(result)
-                print(result)
         return stack.pop()
