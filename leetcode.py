@@ -11,9 +11,9 @@ class Solution:
                     result = num1 + num2
                 elif i == '-':
                     result = num1 - num2
-                elif i == '/':
-                    result = int(num1 / num2)
                 elif i == '*':
                     result = num1 * num2
+                elif i == '/':
+                    result = int(num1 / num2)
                 stack.append(result)
         return stack.pop()
