@@ -1,19 +1,19 @@
 class Solution:
-    def evalRPN(self, tokens: List[str]) -> int:
-        stack = []
-        for i in tokens:
-            try:
-                stack.append(int(i))
-            except:
-                num2 = stack.pop()
-                num1 = stack.pop()
-                if i == '+':
-                    result = num1 + num2
-                elif i == '-':
-                    result = num1 - num2
-                elif i == '*':
-                    result = num1 * num2
-                elif i == '/':
-                    result = int(num1 / num2)
-                stack.append(result)
-        return stack.pop()
+    def summaryRanges(self, nums: List[int]) -> List[str]:
+        result = []
+        i = 0
+
+        while i < len(nums):
+            start = nums[i]
+
+            while i < len(nums) - 1 and nums[i] + 1 == nums[i + 1]:
+                i += 1
+
+            if start != nums[i]:
+                result.append(str(start) + "->" + str(nums[i]))
+            else:
+                result.append(str(nums[i]))
+
+            i += 1
+        return result
+            
