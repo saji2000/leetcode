@@ -1,19 +1,19 @@
 class Solution:
-    def summaryRanges(self, nums: List[int]) -> List[str]:
-        result = []
-        i = 0
-
-        while i < len(nums):
-            start = nums[i]
-
-            while i < len(nums) - 1 and nums[i] + 1 == nums[i + 1]:
-                i += 1
-
-            if start != nums[i]:
-                result.append(str(start) + "->" + str(nums[i]))
-            else:
-                result.append(str(nums[i]))
-
-            i += 1
-        return result
-            
+    def generateParenthesis(self, n: int) -> List[str]:
+        stack = []
+        res = []
+        def backtrack(open, close):
+            if open == close == n:
+                res.append("".join(stack))
+                return
+            if open < n:
+                stack.append("(")
+                backtrack(open + 1, close)
+                stack.pop()    
+            if close < open:
+                stack.append(")")
+                backtrack(open, close + 1)
+                stack.pop()
+        backtrack(0, 0)
+        return res
+        
