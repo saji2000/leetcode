@@ -1,11 +1,15 @@
 class Solution:
-    def dailyTemperatures(self, temperatures: List[int]) -> List[int]:
+    def carFleet(self, target: int, position: List[int], speed: List[int]) -> int:
+        pair = []
         stack = []
-        ans = [0] * len(temperatures)
 
-        for i, t in enumerate(temperatures):
-            while stack and t > stack[-1][0]:
-                stackIndex = stack.pop()[1]
-                ans[stackIndex] = i - stackIndex
-            stack.append([t, i])
-        return ans
+        for i in range(len(position)):
+            pair.append([position[i], speed[i]])
+        
+        pair = sorted(pair)
+
+        for p, s in pair[::-1]:
+            stack.append((target - p)/s)
+            if len(stack) >= 2 and stack[-1] <= stack[-2]:
+                stack.pop()
+        return len(stack)
