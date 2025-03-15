@@ -5,11 +5,11 @@ class Solution:
 
         for i in range(len(position)):
             pair.append([position[i], speed[i]])
-        
-        pair = sorted(pair)
 
+        pair = sorted(pair)
         for p, s in pair[::-1]:
-            stack.append((target - p)/s)
+            stack.append((target - p) / s)
             if len(stack) >= 2 and stack[-1] <= stack[-2]:
                 stack.pop()
         return len(stack)
+            
