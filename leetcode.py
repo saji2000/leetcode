@@ -1,15 +1,29 @@
 class Solution:
-    def carFleet(self, target: int, position: List[int], speed: List[int]) -> int:
-        pair = []
-        stack = []
+    def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
+        l, r = 0, len(matrix) - 1
 
-        for i in range(len(position)):
-            pair.append([position[i], speed[i]])
+        while l <= r:
+            mid = (l + r)//2
+            num = matrix[mid][0]
+            if matrix[mid][0] < target and matrix[mid][-1] > target:
+                break
+            elif num > target:
+                r = mid - 1
+            elif num < target:
+                l = mid + 1
+            else:
+                return True
 
-        pair = sorted(pair)
-        for p, s in pair[::-1]:
-            stack.append((target - p) / s)
-            if len(stack) >= 2 and stack[-1] <= stack[-2]:
-                stack.pop()
-        return len(stack)
-            
+        index = (l + r) // 2
+        l, r = 0, len(matrix[0]) - 1
+
+        while l <= r:
+            mid = (l + r)//2
+            num = matrix[index][mid]
+            if num > target:
+                r = mid - 1
+            elif num < target:
+                l = mid + 1
+            else:
+                return True
+        return False
