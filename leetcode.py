@@ -4,25 +4,23 @@ class Solution:
 
         while l <= r:
             mid = (l + r)//2
-            num = matrix[mid][0]
-            if matrix[mid][0] < target and matrix[mid][-1] > target:
+            if matrix[mid][0] < target and matrix[mid][-1] >= target:
                 break
-            elif num > target:
-                r = mid - 1
-            elif num < target:
+            elif matrix[mid][0] < target:
                 l = mid + 1
+            elif matrix[mid][0] > target:
+                r = mid - 1
             else:
                 return True
-
-        index = (l + r) // 2
+        
+        row = mid
         l, r = 0, len(matrix[0]) - 1
-
         while l <= r:
             mid = (l + r)//2
-            num = matrix[index][mid]
-            if num > target:
+
+            if matrix[row][mid] > target:
                 r = mid - 1
-            elif num < target:
+            elif matrix[row][mid] < target:
                 l = mid + 1
             else:
                 return True
