@@ -10,7 +10,7 @@ class Solution:
             else:
                 myDict[s[r]] += 1
             values = myDict.values()
-            if (sum(values) - max(values)) > k:
+            if ((r - l + 1) - max(values)) > k:
                 myDict[s[l]] -= 1
                 l += 1
             maxLength = max(maxLength, r - l + 1)
