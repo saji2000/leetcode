@@ -1,14 +1,34 @@
-import collections
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
 class Solution:
-    def checkInclusion(self, s1: str, s2: str) -> bool:
+    def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
+        if not head or not head.next:
+            return
+        
+        node = head
+        length = 1
 
-        l, r = 0, len(s1) - 1
-        s1 = collections.Counter(s1)
+        while node.next:
+            length += 1
+            node = node.next
+        
+        pos = length - n
+        if pos == 0:
+            return head.next
 
-        while r < len(s2):
-            if s1 == collections.Counter(s2[l:r + 1]):
-                return True
-            l += 1
-            r += 1
-        return False
+        node = head
+        i = 0
+
+        while i != pos - 1:
+            node = node.next
+            i += 1
+        
+        node.next = node.next.next 
+
+        return head
+                
+        
         
