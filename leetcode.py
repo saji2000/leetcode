@@ -10,25 +10,21 @@ class Solution:
         
         node = head
         length = 1
-
         while node.next:
             length += 1
             node = node.next
         
         pos = length - n
+
         if pos == 0:
             return head.next
 
         node = head
         i = 0
-
         while i != pos - 1:
             node = node.next
             i += 1
         
-        node.next = node.next.next 
+        node.next = node.next.next
 
         return head
-                
-        
-        
