@@ -7,7 +7,7 @@
 class Solution:
 
     def __init__(self):
-        self.max_diameter = 0
+        self.diameter = 0
 
     def diameterOfBinaryTree(self, root: Optional[TreeNode]) -> int:
 
@@ -18,11 +18,11 @@ class Solution:
             left = height(node.left)
             right = height(node.right)
 
-            self.max_diameter = max(self.max_diameter, left + right)
+            self.diameter = max(self.diameter, left + right)
 
             return max(left, right) + 1
-        
+
         height(root)
 
-        return self.max_diameter
-        
+        return self.diameter
+
