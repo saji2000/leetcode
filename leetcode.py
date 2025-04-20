@@ -5,10 +5,9 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def __init__(self):
-        self.diameter = 0
-
-    def diameterOfBinaryTree(self, root: Optional[TreeNode]) -> int:
+    def isBalanced(self, root: Optional[TreeNode]) -> bool:
+        if not root:
+            return True
 
         def height(node):
             if not node:
@@ -17,11 +16,14 @@ class Solution:
             left = height(node.left)
             right = height(node.right)
 
-            self.diameter = max(self.diameter, left + right)
-
+            if abs(left - right) > 1 or left == -1 or right == -1:
+                return -1
+            
             return max(left, right) + 1
         
-        height(root)
+        ans = height(root)
 
-        return self.diameter
-        
+        if ans == -1:
+            return False
+
+        return True
