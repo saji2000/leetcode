@@ -5,25 +5,6 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def isBalanced(self, root: Optional[TreeNode]) -> bool:
-        if not root:
-            return True
-
-        def height(node):
-            if not node:
-                return 0
-            
-            left = height(node.left)
-            right = height(node.right)
-
-            if abs(left - right) > 1 or left == -1 or right == -1:
-                return -1
-            
-            return max(left, right) + 1
+    def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
+        return str(p) == str(q)
         
-        ans = height(root)
-
-        if ans == -1:
-            return False
-
-        return True
