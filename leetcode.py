@@ -8,12 +8,15 @@ import collections
 
 class Solution:
     def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
-        ans = []
+        res = []
 
         if not root:
-            return []
+            return res
         
         queue = collections.deque()
+
+        node = root
+
         queue.append(root)
 
         while queue:
@@ -21,6 +24,7 @@ class Solution:
             size = len(queue)
 
             for _ in range(size):
+
                 node = queue.popleft()
 
                 same_level.append(node.val)
@@ -31,8 +35,6 @@ class Solution:
                 if node.right:
                     queue.append(node.right)
 
-            ans.append(same_level)
+            res.append(same_level)
 
-        return ans
-
-                
+        return res
