@@ -4,34 +4,20 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
-
-import collections
 class Solution:
-    def rightSideView(self, root: Optional[TreeNode]) -> List[int]:
-        right_side = []
+    def goodNodes(self, root: TreeNode) -> int:
 
-        if not root:
-            return right_side
+        def dfs(node, maximum):
+            if not node:
+                return 0
+            
+            if node.val >= maximum:
+                good = 1
+            else:
+                good = 0
+            maximum = max(maximum, node.val)
 
-        queue = collections.deque()
 
-        queue.append(root)
-
-        while queue:
-            same_level = []
-
-            size = len(queue)
-            for _ in range(size):
-                node = queue.popleft()
-
-                same_level.append(node.val)
-
-                if node.right:
-                    queue.append(node.right)
-
-                if node.left:
-                    queue.append(node.left)
-
-            right_side.append(same_level[0])
+            return good + dfs(node.right, maximum) + dfs(node.left, maximum)
         
-        return right_side
+        return dfs(root, -100000)
