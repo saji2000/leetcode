@@ -4,6 +4,8 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
+
+# Done through DFS algorithm
 class Solution:
     def goodNodes(self, root: TreeNode) -> int:
 
