@@ -1,7 +1,7 @@
 import math
 
 n = 14  # Number of trials
-x = 11  # Number of successes
+x = 6  # Number of successes
 p = 0.0526  # Probability of success
 
 # Calculate the binomial coefficient (nCx)
