@@ -1,7 +1,7 @@
 class Solution:
-    flightCostsDict = {}
     def __init__(self):
-        return
+        self.flightCostsDict = {}
+
     def flightCosts(self, input):
 
         flights = input.split(',')
@@ -11,7 +11,7 @@ class Solution:
 
             trip = str(info[0] + "->" + info[1])
 
-            self.flightCostsDict[trip] = info[3]
+            self.flightCostsDict[trip] = int(info[3])
 
     def flightCost(self, input):
         if input in self.flightCostsDict:
