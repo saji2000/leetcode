@@ -1,26 +1,26 @@
-class Solution:
+class TransactionProcessor:
     def __init__(self):
-        self.flightCostsDict = {}
+        self.transactions_dict = {}
+    
+    def process_transactions(self, input_str):
+        transactions = input_str.split(',')
 
-    def flightCosts(self, input):
+        for t in transactions:
+            info = t.split(':')
+            if len(info) != 4 or not info[0] or not info[1] or not info[2] or not info[3] or not info[2].isdigit():
+                continue
+            value = int(info[2])
+            key = info[0] + "->" + info[1] + "$" + info[3]
+            if key in self.transactions_dict:
+                self.transactions_dict[key] += value
+            else:
+                self.transactions_dict[key] = value
 
-        flights = input.split(',')
-
-        for flight in flights:
-            info = flight.split(':')
-
-            trip = str(info[0] + "->" + info[1])
-
-            self.flightCostsDict[trip] = int(info[3])
-
-    def flightCost(self, input):
-        if input in self.flightCostsDict:
-            return self.flightCostsDict[input]
-        else:
-            return "No Information"
-
-solution = Solution()
-
-solution.flightCosts("UK:US:FedEx:4,UK:FR:Jet1:2,US:UK:RyanAir:8,CA:UK:CanadaAir:8")
-
-print(solution.flightCost("UK->FR"))
+    def get_transaction(self, sender, receiver, currency):
+        return self.transactions_dict.get((sender + "->" + receiver + "$" + currency), 0)
+    
+processor = TransactionProcessor()
+processor.process_transactions("Alice:Bob:100:USD,Bob:Charlie:50:EUR,Alice:Bob:200:USD")
+print(processor.get_transaction("Alice", "Bob", "USD"))  # Output: 300
+print(processor.get_transaction("Bob", "Charlie", "EUR"))  # Output: 50
+print(processor.get_transaction("Alice", "Charlie", "USD"))  # Output: 0
