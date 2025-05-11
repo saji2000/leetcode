@@ -7,7 +7,7 @@ class TransactionProcessor:
 
         for t in transactions:
             info = t.split(':')
-            if len(info) != 4 or not info[0] or not info[1] or not info[2] or not info[3] or not info[2].isdigit():
+            if len(info) != 4 or not all (field.isalpha() for field in [info[0], info[1], info[3]]):
                 continue
             value = int(info[2])
             key = info[0] + "->" + info[1] + "$" + info[3]
