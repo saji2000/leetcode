@@ -7,15 +7,15 @@ class LogAnalyzer:
         logs = input_str.split(',')
         for log in logs:
             info = log.split(':')
+            if not all (field for field in info):
+                continue
             time = info[0] + info[1] + info[2]
             key = info[3] + info[4] + info[5]
             print(time)
             self.logs_dict[key].add(time)
-        # print(self.logs_dict)
         return
             
     def get_action_count(self, user, action, resource):
-        # print(self.logs_dict)
         key = user + action + resource
 
         if key in self.logs_dict:
