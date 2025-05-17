@@ -5,23 +5,18 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def __init__(self):
-        self.mySet = set()
-
     def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
-        def traverse(node):
-            if not node:
-                return
-            self.mySet.add(node.val)
+        node = root
+        stack = []
+        count = 0
 
-            traverse(node.left)
-            traverse(node.right)
-        
-        traverse(root)
-
-        for i in range(k):
-            minimum = min(self.mySet)
-            self.mySet.remove(minimum)
-        
-        return minimum
-        
+        while stack or node:
+            while node:
+                stack.append(node)
+                node = node.left
+            
+            node = stack.pop()
+            count += 1
+            if count == k:
+                return node.val
+            node = node.right
