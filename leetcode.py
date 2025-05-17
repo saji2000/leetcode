@@ -5,14 +5,23 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def isValidBST(self, root: Optional[TreeNode]) -> bool:
-        def isValid(node, minimum, maximum):
+    def __init__(self):
+        self.mySet = set()
+
+    def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
+        def traverse(node):
             if not node:
-                return True
-            
-            if node.val >= maximum or node.val <= minimum:
-                return False
+                return
+            self.mySet.add(node.val)
 
-            return isValid(node.left, minimum, node.val) and isValid(node.right, node.val, maximum)
+            traverse(node.left)
+            traverse(node.right)
+        
+        traverse(root)
 
-        return isValid(root, float('-inf'), float('inf'))
+        for i in range(k):
+            minimum = min(self.mySet)
+            self.mySet.remove(minimum)
+        
+        return minimum
+        
