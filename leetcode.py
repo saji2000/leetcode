@@ -5,15 +5,19 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def isValidBST(self, root: Optional[TreeNode]) -> bool:
-        # Checking if the sub tree is valid
-        def isValid(node, maximum, minimum):
-            if not node:
-                return True
+    def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
+        stack = []
+        count = 0
+        node = root
+
+        while node or stack:
+            while node:
+                stack.append(node)
+                node = node.left
+            node = stack.pop()
+            count += 1
+            if count == k:
+                return node.val
+            node = node.right
+        
             
-            if node.val >= maximum or node.val <= minimum:
-                return False
-
-            return isValid(node.left, node.val, minimum) and isValid(node.right, maximum, node.val)
-
-        return isValid(root, float('inf'), float('-inf'))
