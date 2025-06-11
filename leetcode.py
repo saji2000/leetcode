@@ -9,7 +9,6 @@ class Solution:
         stack = []
         count = 0
         node = root
-
         while node or stack:
             while node:
                 stack.append(node)
