@@ -1,5 +1,17 @@
 class Solution:
     def isAnagram(self, s: str, t: str) -> bool:
-        if Counter(s) == Counter(t):
-            return True
-        return False
+        dictionary_s = {}
+        for i in s:
+            if i in dictionary_s:
+                dictionary_s[i] += 1
+            else:
+                dictionary_s[i] = 1
+
+        dictionary_t = {}
+        for i in t:
+            if i in dictionary_t:
+                dictionary_t[i] += 1
+            else:
+                dictionary_t[i] = 1
+        
+        return dictionary_s == dictionary_t
