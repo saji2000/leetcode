@@ -1,17 +1,12 @@
 class Solution:
-    def isAnagram(self, s: str, t: str) -> bool:
-        dictionary_s = {}
-        for i in s:
-            if i in dictionary_s:
-                dictionary_s[i] += 1
-            else:
-                dictionary_s[i] = 1
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
 
-        dictionary_t = {}
-        for i in t:
-            if i in dictionary_t:
-                dictionary_t[i] += 1
-            else:
-                dictionary_t[i] = 1
+        dictionary = {}
+
+        for i in range(len(nums)):
+            complement = target - nums[i]
+            if complement in dictionary:
+                return [i, dictionary[complement]]
+            dictionary[nums[i]] = i
         
-        return dictionary_s == dictionary_t
+        
