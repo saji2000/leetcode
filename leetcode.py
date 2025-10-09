@@ -1,12 +1,12 @@
+from collections import defaultdict
+
+
 class Solution:
-    def twoSum(self, nums: List[int], target: int) -> List[int]:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        hash_map = defaultdict(list)
 
-        dictionary = {}
+        for s in strs:
+            sorted_word = "".join(sorted(s))
+            hash_map[sorted_word].append(s)
 
-        for i in range(len(nums)):
-            complement = target - nums[i]
-            if complement in dictionary:
-                return [i, dictionary[complement]]
-            dictionary[nums[i]] = i
-        
-        
+        return list(hash_map.values())
