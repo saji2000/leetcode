@@ -1,12 +1,13 @@
-from collections import defaultdict
-
-
+from collections import Counter
 class Solution:
-    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
-        hash_map = defaultdict(list)
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        freqs = Counter(nums)
 
-        for s in strs:
-            sorted_word = "".join(sorted(s))
-            hash_map[sorted_word].append(s)
+        ordered = sorted(freqs.items(), key = lambda x: x[1], reverse=True)
 
-        return list(hash_map.values())
+        top_k = []
+
+        for i in ordered:
+            top_k.append(i[0])
+        
+        return top_k[0:k]
