@@ -1,15 +1,19 @@
+from collections import defaultdict
 class Solution:
-    def productExceptSelf(self, nums: List[int]) -> List[int]:
-        ans = [1] * len(nums)
+    def isValidSudoku(self, board: List[List[str]]) -> bool:
+        cols = defaultdict(set)
+        rows = defaultdict(set)
+        squares = defaultdict(set)
 
-        prev = 1
-        for i in range(len(nums)):
-            ans[i] = prev
-            prev *= nums[i]
-
-        post = 1
-        for i in reversed(range(len(nums))):
-            ans[i] *= post
-            post *= nums[i]
-
-        return ans
+        for r in range(9):
+            for c in range(9):
+                if board[r][c] == ".":
+                    continue
+                if (board[r][c] in rows[r]) or (board[r][c] in cols[c]) or (board[r][c] in squares[(r//3, c//3)]):
+                    return False
+                rows[r].add(board[r][c])
+                cols[c].add(board[r][c])
+                squares[(r//3, c//3)].add(board[r][c])
+        
+        return True
+        
