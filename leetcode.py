@@ -1,30 +1,20 @@
-class MinStack:
+class Solution:
+    def evalRPN(self, tokens: List[str]) -> int:
+        stack = []
 
-    def __init__(self):
-        self.stack = []
-        self.minimum = []
-
-    def push(self, val: int) -> None:
-        self.stack.append(val)
-        if self.minimum:
-            self.minimum.append(min(val, self.minimum[-1]))
-        else:
-            self.minimum.append(val)
-
-    def pop(self) -> None:
-        self.stack.pop(-1)
-        self.minimum.pop(-1)
-
-    def top(self) -> int:
-        return self.stack[-1]
-
-    def getMin(self) -> int:
-        return self.minimum[-1]
-
-
-# Your MinStack object will be instantiated and called as such:
-# obj = MinStack()
-# obj.push(val)
-# obj.pop()
-# param_3 = obj.top()
-# param_4 = obj.getMin()
+        for i in tokens:
+            if i in '+-/*':
+                num2 = stack.pop(-1)
+                num1 = stack.pop(-1)
+                if i == '+':
+                    num = num1 + num2
+                elif i == '-':
+                    num = num1 - num2
+                elif i == '/':
+                    num = int(num1 / num2)
+                else:
+                    num = num1 * num2
+                stack.append(num)
+            else:
+                stack.append(int(i))
+        return stack.pop()
