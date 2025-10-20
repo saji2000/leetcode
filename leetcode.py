@@ -4,9 +4,11 @@ class Solution:
         max_length = 0
 
         for i in my_set:
-            if (i - 1) not in my_set:
+            if i - 1 not in my_set:
                 length = 1
-                while i + length in my_set:
+                j = i
+                while j + 1 in my_set:
+                    j += 1
                     length += 1
                 max_length = max(max_length, length)
         return max_length
