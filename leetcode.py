@@ -1,20 +1,25 @@
 class Solution:
-    def evalRPN(self, tokens: List[str]) -> int:
+    def generateParenthesis(self, n: int) -> List[str]:
         stack = []
+        res = []
 
-        for i in tokens:
-            if i in "+-*/":
-                num2 = stack.pop()
-                num1 = stack.pop()
-                if i == '+':
-                    num = num1 + num2
-                elif i == '-':
-                    num = num1 - num2
-                elif i == '*':
-                    num = num1 * num2
-                else:
-                    num = int(num1 / num2)
-                stack.append(num)
-            else:
-                stack.append(int(i))
-        return stack.pop()
+        def backtrack(openN, closedN):
+            if openN == closedN == n:
+                print(stack)
+                res.append("".join(stack))
+                return
+
+            if openN < n:
+                stack.append("(")
+                print(stack)
+                backtrack(openN + 1, closedN)
+                stack.pop()
+
+            if closedN < openN:
+                stack.append(")")
+                print(stack)
+                backtrack(openN, closedN + 1)
+                stack.pop()
+
+        backtrack(0, 0)
+        return res
