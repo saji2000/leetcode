@@ -1,20 +1,22 @@
-class Solution:
-    def evalRPN(self, tokens: List[str]) -> int:
-        stack = []
+class MinStack:
 
-        for i in tokens:
-            if i in '+-/*':
-                num2 = stack.pop(-1)
-                num1 = stack.pop(-1)
-                if i == '+':
-                    num = num1 + num2
-                elif i == '-':
-                    num = num1 - num2
-                elif i == '/':
-                    num = int(num1 / num2)
-                else:
-                    num = num1 * num2
-                stack.append(num)
-            else:
-                stack.append(int(i))
-        return stack.pop()
+    def __init__(self):
+        self.stack = []
+        self.minStack = []
+        
+    def push(self, val: int) -> None:
+        self.stack.append(val)
+        if len(self.minStack) == 0:
+            self.minStack.append(val)
+        else:
+            self.minStack.append(min(val, self.minStack[-1]))
+
+    def pop(self) -> None:
+        self.minStack.pop()
+        self.stack.pop()
+
+    def top(self) -> int:
+        return self.stack[-1]
+
+    def getMin(self) -> int:
+        return self.minStack[-1]
