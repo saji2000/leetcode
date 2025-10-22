@@ -1,24 +1,19 @@
 class Solution:
-    def generateParenthesis(self, n: int) -> List[str]:
-        stack = []
-        res = []
+    def dailyTemperatures(self, temperatures: List[int]) -> List[int]:
+        res = [0] * len(temperatures)
 
-        def backtrack(openN, closedN):
-            if openN == closedN == n:
-                res.append("".join(stack))
-                return
+        i = 0
+
+        while i < len(temperatures) - 1:
             
-            if openN < n:
-                stack.append('(')
-                backtrack(openN + 1, closedN)
-                stack.pop()
-            
-            if closedN < openN:
-                stack.append(')')
-                backtrack(openN, closedN + 1)
-                stack.pop()
-                
-        backtrack(0, 0)
+            j = i + 1
+
+            while j < len(temperatures) and temperatures[i] >= temperatures[j]:
+                j += 1
+
+            if j != len(temperatures):
+                res[i] = (j - i)
+
+            i += 1
 
         return res
-        
