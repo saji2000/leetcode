@@ -1,12 +1,18 @@
 class Solution:
-    def dailyTemperatures(self, temperatures: List[int]) -> List[int]:
-        n = len(temperatures)
-        stack = []
-        res = [0] * n
+    def carFleet(self, target: int, position: List[int], speed: List[int]) -> int:
+        cars = sorted(zip(position, speed), reverse=True)
 
-        for i in range(n):
-            while stack and temperatures[i] > temperatures[stack[-1]]:
-                prev_i = stack.pop()
-                res[prev_i] = i - prev_i
-            stack.append(i)
-        return res
+        fleet = 0
+        ahead_t = 0.0
+
+        for pos, speed in cars:
+            
+            time = (target - pos)/speed
+
+            if ahead_t < time:
+                fleet += 1
+                ahead_t = time
+
+
+        return fleet
+                
