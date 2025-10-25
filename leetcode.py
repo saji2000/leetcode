@@ -1,10 +1,15 @@
 class Solution:
-    def isPalindrome(self, s: str) -> bool:
-        my_string = ""
-        for i in s:
-            if i.isalnum():
-                my_string += i
-        
-        my_string = my_string.lower()
+    def twoSum(self, numbers: List[int], target: int) -> List[int]:
+        l, r = 0, len(numbers) - 1
 
-        return my_string == my_string[::-1]
+        while l < r:
+            n = numbers[l] + numbers[r]
+
+            if n < target:
+                l += 1
+            elif n > target:
+                r -= 1
+            else:
+                return [l + 1, r + 1]
+        
+        
