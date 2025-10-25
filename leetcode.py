@@ -1,12 +1,10 @@
 class Solution:
-    def carFleet(self, target: int, position: List[int], speed: List[int]) -> int:
-        cars = sorted(zip(position, speed), reverse=True)
-        fleet = 0
-        prev_t = 0.0
+    def isPalindrome(self, s: str) -> bool:
+        my_string = ""
+        for i in s:
+            if i.isalnum():
+                my_string += i
+        
+        my_string = my_string.lower()
 
-        for pos, speed in cars:
-            time = (target - pos) / speed
-            if prev_t < time:
-                fleet += 1
-                prev_t = time
-        return fleet
+        return my_string == my_string[::-1]
