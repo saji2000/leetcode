@@ -1,15 +1,26 @@
 class Solution:
-    def twoSum(self, numbers: List[int], target: int) -> List[int]:
-        l, r = 0, len(numbers) - 1
+    def threeSum(self, nums: List[int]) -> List[List[int]]:
+        ans = []
+        nums = sorted(nums)
+        print(nums)
+        for i in range(len(nums)):
+            if i > 0 and nums[i] == nums[i - 1] or nums[i] > 0:
+                continue
+            
+            j = i + 1
+            k = len(nums) - 1
 
-        while l < r:
-            n = numbers[l] + numbers[r]
+            while j < k:
+                num = nums[i] + nums[j] + nums[k]
+                if num > 0:
+                    k -= 1
+                elif num < 0:
+                    j += 1
+                else:
+                    ans.append([nums[i], nums[j], nums[k]])
+                    j += 1
 
-            if n < target:
-                l += 1
-            elif n > target:
-                r -= 1
-            else:
-                return [l + 1, r + 1]
-        
-        
+                    while nums[j] == nums[j - 1] and j < k:
+                        j += 1
+
+        return ans
