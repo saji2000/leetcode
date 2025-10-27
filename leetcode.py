@@ -1,17 +1,15 @@
 class Solution:
-    def maxArea(self, heights: List[int]) -> int:
-        maxArea = 0
+    def search(self, nums: List[int], target: int) -> int:
+        l, r = 0, len(nums) - 1
 
-        l, r = 0, len(heights) - 1
+        while l <= r:
+            mid = (l + r)//2
 
-        while l < r:
-            area = (r - l) * (min(heights[l], heights[r]))
-            
-            maxArea = max(area, maxArea)
-
-            if heights[l] < heights[r]:
-                l += 1
+            if nums[mid] > target:
+                r = mid - 1
+            elif nums[mid] < target:
+                l = mid + 1
             else:
-                r -= 1
+                return mid
 
-        return maxArea
+        return -1
