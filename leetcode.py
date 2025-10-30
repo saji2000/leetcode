@@ -1,5 +1,3 @@
-from typing import List
-
 class Solution:
     def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
         if not matrix or not matrix[0]:
@@ -10,7 +8,6 @@ class Solution:
 
         l, r = 0, rows - 1
         row = -1
-
         while l <= r:
             mid = (l + r) // 2
 
@@ -30,20 +27,24 @@ class Solution:
         if row == -1:
             return False
 
-
         l, r = 0, cols - 1
+
 
         while l <= r:
             mid = (l + r) // 2
-
             num = matrix[row][mid]
 
             if num > target:
-                r = mid - 1
-            
+                r = mid - 1     
+                       
             elif num < target:
                 l = mid + 1
-            
+
             else:
                 return True
+        
         return False
+
+
+
+
