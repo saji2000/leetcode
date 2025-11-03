@@ -1,3 +1,3 @@
 class Solution:
     def findMin(self, nums: List[int]) -> int:
-# review
+# review find min
