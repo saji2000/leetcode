@@ -1,23 +1,30 @@
-class Solution:
-    def search(self, nums: List[int], target: int) -> int:
-        l, r = 0, len(nums) - 1
+class TimeMap:
+
+    def __init__(self):
+        self.dict = defaultdict(list)
+        
+
+    def set(self, key: str, value: str, timestamp: int) -> None:
+        self.dict[key].append([value, timestamp])
+
+
+    def get(self, key: str, timestamp: int) -> str:
+        res = ""
+
+        values = self.dict[key]
+        l, r = 0, len(values) - 1
 
         while l <= r:
             mid = (l + r) // 2
-
-            if nums[mid] == target:
-                return mid
-
-            if nums[l] <= nums[mid]:
-                if target >= nums[l] and target < nums[mid]:
-                    r = mid - 1
-                else:
-                    l = mid + 1
-            
+            if values[mid][1] <= timestamp:
+                res = values[mid][0]
+                l = mid + 1
             else:
-                if target <= nums[r] and target > nums[mid]:
-                    l = mid + 1
-                else:
-                    r = mid - 1
+                r = mid - 1
+        return res
 
-        return -1
+
+# Your TimeMap object will be instantiated and called as such:
+# obj = TimeMap()
+# obj.set(key,value,timestamp)
+# param_2 = obj.get(key,timestamp)
