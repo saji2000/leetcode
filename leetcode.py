@@ -3,16 +3,17 @@ class Solution:
         l, r = 0, 0
         longest = 0
         my_set = set()
+        string = ""
 
-        while l < len(s):
-            if r == len(s) or s[r] in my_set:
-                my_set.clear()
+        while r < len(s):
+            while s[r] in my_set:
+                my_set.remove(s[l])
                 l += 1
-                r = l
-            else:
+            
+            if s[r] not in my_set:
                 my_set.add(s[r])
                 longest = max(longest, len(my_set))
                 r += 1
+
         return longest
-            
         
