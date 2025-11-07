@@ -1,13 +1,18 @@
 class Solution:
-    def maxProfit(self, prices: List[int]) -> int:
-        l, r = 0, 1
-        maxProfit = 0
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        l, r = 0, 0
+        longest = 0
+        my_set = set()
 
-        while r < len(prices):
-            if prices[r] >= prices[l]:
-                profit = prices[r] - prices[l]
-                maxProfit = max(maxProfit, profit)
+        while l < len(s):
+            if r == len(s) or s[r] in my_set:
+                my_set.clear()
+                l += 1
+                r = l
             else:
-                l = r
-            r += 1
-        return maxProfit
+                my_set.add(s[r])
+                longest = max(longest, len(my_set))
+                r += 1
+        return longest
+            
+        
