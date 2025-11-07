@@ -4,10 +4,9 @@ class Solution:
         maxProfit = 0
 
         while r < len(prices):
-            
-            if prices[l] <= prices[r]:
+            if prices[r] >= prices[l]:
                 profit = prices[r] - prices[l]
-                maxProfit = max(profit, maxProfit)
+                maxProfit = max(maxProfit, profit)
             else:
                 l = r
             r += 1
