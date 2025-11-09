@@ -1,17 +1,12 @@
 class Solution:
-    def characterReplacement(self, s: str, k: int) -> int:
-        l = 0
-        longest = 0
-        count = {}
-        max_count = 0
+    def checkInclusion(self, s1: str, s2: str) -> bool:
+        l, r = 0, len(s1)
 
-        for r in range(len(s)):
-            count[s[r]] = count.get(s[r], 0) + 1
-            max_count = max(max_count, count[s[r]])
-
-            while (r - l + 1) - max_count > k:
-                count[s[l]] -= 1
-                l += 1
-            longest = max(longest, r - l + 1) 
-
-        return longest
+        while r <= len(s2):
+            if Counter(s1) == Counter(s2[l:r]):
+                return True
+            
+            l += 1
+            r += 1
+        return False
+        
