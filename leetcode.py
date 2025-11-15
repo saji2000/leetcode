@@ -4,34 +4,19 @@
 #         self.val = val
 #         self.next = next
 class Solution:
-    def reorderList(self, head: Optional[ListNode]) -> None:
-        """
-        Do not return anything, modify head in-place instead.
-        """
-        slow = head
-        fast = head.next
+    def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
+        dummy = ListNode(0, head)
+        right = head
+        left = dummy
 
-        while fast and fast.next:
-            slow = slow.next
-            fast = fast.next.next
+        while n > 0 and right:
+            right = right.next
+            n -= 1
 
-        second = slow.next
-        slow.next = None
-        prev = None
-
-        while second:
-            tmp = second.next
-            second.next = prev
-            prev = second
-            second = tmp
+        while right:
+            left = left.next
+            right = right.next
         
-        first, second = head, prev
+        left.next = left.next.next
 
-        while second:
-            tmp1, tmp2 = first.next, second.next
-            first.next = second
-            second.next = tmp1
-            first = tmp1
-            second = tmp2
-
-        return head
+        return dummy.next
