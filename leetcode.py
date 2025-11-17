@@ -1,24 +1,34 @@
-# Definition for singly-linked list.
-# class ListNode:
-#     def __init__(self, val=0, next=None):
-#         self.val = val
-#         self.next = next
+"""
+# Definition for a Node.
+class Node:
+    def __init__(self, x: int, next: 'Node' = None, random: 'Node' = None):
+        self.val = int(x)
+        self.next = next
+        self.random = random
+"""
 
 class Solution:
-    def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
-        dummy = ListNode(0, head)
-        right = head
-        left = dummy
+    def copyRandomList(self, head: 'Optional[Node]') -> 'Optional[Node]':
+        hashmap = {}
 
-        while n > 0:
-            right = right.next
-            n -= 1
+        node = head
+        newHead = Node(0)
+        newNode = newHead
+
+        while node:
+            newNode.next = Node(node.val, None, None)
+            hashmap[node] = newNode.next
+            newNode = newNode.next
+            node = node.next
+
+        node = head
+        newNode = newHead.next
+
+        while node:
+            if node.random:
+                newNode.random = hashmap[node.random]
+            node = node.next
+            newNode = newNode.next
         
-
-        while right:
-            right = right.next
-            left = left.next
+        return newHead.next
         
-        left.next = left.next.next
-
-        return dummy.next
