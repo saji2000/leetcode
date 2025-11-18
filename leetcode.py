@@ -1,34 +1,42 @@
-"""
-# Definition for a Node.
-class Node:
-    def __init__(self, x: int, next: 'Node' = None, random: 'Node' = None):
-        self.val = int(x)
-        self.next = next
-        self.random = random
-"""
-
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
 class Solution:
-    def copyRandomList(self, head: 'Optional[Node]') -> 'Optional[Node]':
-        hashmap = {}
+    def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
+        head = ListNode(0)
+        ans = head
+        carry = 0
 
-        node = head
-        newHead = Node(0)
-        newNode = newHead
+        while l1 and l2:
+            num = l1.val + l2.val + carry
+            carry = num // 10
+            num = num % 10
 
-        while node:
-            newNode.next = Node(node.val, None, None)
-            hashmap[node] = newNode.next
-            newNode = newNode.next
-            node = node.next
-
-        node = head
-        newNode = newHead.next
-
-        while node:
-            if node.random:
-                newNode.random = hashmap[node.random]
-            node = node.next
-            newNode = newNode.next
+            ans.next = ListNode(num)
+            ans = ans.next
+            l1 = l1.next
+            l2 = l2.next
         
-        return newHead.next
+        while l1:
+            num = l1.val + carry
+            carry = num // 10
+            num = num % 10
+            ans.next = ListNode(num)
+            ans = ans.next
+            l1 = l1.next
+
+        while l2:
+            num = l2.val + carry
+            carry = num // 10
+            num = num % 10
+            ans.next = ListNode(num)
+            ans = ans.next
+            l2 = l2.next
         
+        if carry:
+            ans.next = ListNode(carry)
+            ans = ans.next
+        
+        return head.next
