@@ -8,7 +8,6 @@ class Solution:
             fast = nums[nums[fast]]
             if fast == slow:
                 break
-
         slow2 = 0
 
         while True:
