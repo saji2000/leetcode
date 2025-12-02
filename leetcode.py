@@ -9,7 +9,6 @@ class Solution:
             if fast == slow:
                 break
         slow2 = 0
-
         while True:
             slow = nums[slow]
             slow2 = nums[slow2]
