@@ -1,4 +1,5 @@
 class Solution:
+    # duplicate
     def findDuplicate(self, nums: List[int]) -> int:
         slow = 0
         fast = 0
