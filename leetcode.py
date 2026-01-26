@@ -10,34 +10,49 @@ class LRUCache:
     def __init__(self, capacity: int):
         self.capacity = capacity
         self.head = ListNode()
+        self.tail = ListNode()
+        self.head.next = self.tail
+        self.tail.prev = self.head
         self.dict = {}
     
     def remove(self, key):
         node = self.dict[key]
+
         prev = node.prev
         next = node.next
+        if next:
+            next.prev = prev
+
         prev.next = next
-        next.prev = prev
         del self.dict[key]
     
     def insert(self, key, val):
-        self.dict[key] = ListNode(key, val, self.head.next, self.head)
-        self.dict[key] = self.head.next.prev
+        next = self.head.next
+        self.dict[key] = ListNode(key, val, next, self.head)
+
+        if next:
+            next.prev = self.dict[key] 
         self.head.next = self.dict[key]
 
 
     def get(self, key: int) -> int:
         if key in self.dict:
+            val = self.dict[key].val
             self.remove(key)
-            self.put
-            return self.dict[key]
+            self.insert(key, val)
+            return val
         return -1
 
     def put(self, key: int, value: int) -> None:
         if key in self.dict:
             self.remove(key)
-            self.put(key, value)
-            return
+
+        self.insert(key, value)
+        if len(self.dict) > self.capacity:
+            self.remove(self.tail.prev.key)
+
+        
+
         
 
 
