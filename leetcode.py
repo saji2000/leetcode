@@ -1,30 +1,19 @@
 # Definition for a binary tree node.
 # class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
 class Solution:
-    def isSameTree(self, p, q):
-        if not p and not q:
-            return True
-        
-        if (not p and q) or (p and not q) or (p.val != q.val):
-            return False
-        
-        return self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right)
+    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+        node = root
 
-    def isSubtree(self, root: Optional[TreeNode], subRoot: Optional[TreeNode]) -> bool:
-        if self.isSameTree(root, subRoot):
-            return True
+        while node:
+            if p.val > node.val and q.val > node.val:
+                node = node.right
+            elif p.val < node.val and q.val < node.val:
+                node = node.left
+            else:
+                return node
         
-        if root.left:
-            left = self.isSubtree(root.left, subRoot)
-            if left:
-                return True
-        if root.right:
-            right = self.isSubtree(root.right, subRoot)
-            if right:
-                return True
-
-        return False
