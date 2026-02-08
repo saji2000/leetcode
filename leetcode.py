@@ -4,18 +4,21 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
-
 class Solution:
-    def lowestCommonAncestor(self, root: TreeNode, p: TreeNode, q: TreeNode) -> TreeNode:
-
-        node = root
-        while node:
-            if p.val < node.val and q.val < node.val:
-                node = node.left
-            elif p.val > node.val and q.val > node.val:
-                node = node.right
-            else:
-                return node
-        
-
-        
+    def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
+        q = collections.deque()
+        q.append(root)
+        ans = []
+        while q:
+            level = []
+            length = len(q)
+            for i in range(length):
+                node = q.popleft()
+                if node:
+                    level.append(node.val)
+                    q.append(node.left)
+                    q.append(node.right)
+            if level:
+                ans.append(level)
+        return ans
+            
