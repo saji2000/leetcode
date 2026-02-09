@@ -4,22 +4,19 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
-
 class Solution:
-    def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
+    def rightSideView(self, root: Optional[TreeNode]) -> List[int]:
         queue = collections.deque()
         queue.append(root)
         ans = []
-
         while queue:
-            queueLength = len(queue)
-            level = []
-            for i in range(queueLength):
+            length = len(queue)
+            right = queue[-1]
+            for i in range(length):
                 node = queue.popleft()
                 if node:
                     queue.append(node.left)
                     queue.append(node.right)
-                    level.append(node.val)
-            if level:
-                ans.append(level)
+            if right:
+                ans.append(right.val)
         return ans
