@@ -5,17 +5,20 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def goodNodes(self, root: TreeNode) -> int:
+    def goodNodes(self, root: TreeNode) -> int: 
 
         def dfs(node, maxVal):
             if not node:
                 return 0
-            if maxVal > node.val:
+            
+            if node.val < maxVal:
                 res = 0
             else:
                 res = 1
-            maxVal = max(node.val, maxVal)
-            return res + dfs(node.left, maxVal) + dfs(node.right, maxVal)
+                maxVal = node.val
+            res += dfs(node.left, maxVal) + dfs(node.right, maxVal)
+
+            return res
         
         return dfs(root, root.val)
-        
+            
