@@ -5,20 +5,21 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def goodNodes(self, root: TreeNode) -> int: 
+    def isValidBST(self, root: Optional[TreeNode]) -> bool:
 
-        def dfs(node, maxVal):
+        def dfs(node, minimum, maximum):
             if not node:
-                return 0
-            
-            if node.val < maxVal:
-                res = 0
-            else:
-                res = 1
-                maxVal = node.val
-            res += dfs(node.left, maxVal) + dfs(node.right, maxVal)
+                return True
 
-            return res
-        
-        return dfs(root, root.val)
+            if node.val <= minimum or node.val >= maximum:
+                return False
+    
+            right = dfs(node.right, node.val, maximum)
+            left = dfs(node.left, minimum, node.val)
             
+            return left and right
+        
+        return dfs(root, -math.inf, math.inf)
+        
+            
+        
