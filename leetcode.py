@@ -5,21 +5,23 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def isValidBST(self, root: Optional[TreeNode]) -> bool:
+    def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
+        self.k = k
+        self.result = None
 
-        def dfs(node, minimum, maximum):
-            if not node:
-                return True
+        def traverse(node):
+            if not node or self.result is not None:
+                return
+            
+            traverse(node.left)
 
-            if node.val <= minimum or node.val >= maximum:
-                return False
-    
-            right = dfs(node.right, node.val, maximum)
-            left = dfs(node.left, minimum, node.val)
+            self.k -= 1
+            if self.k == 0:
+                self.result = node.val
+                return 
             
-            return left and right
-        
-        return dfs(root, -math.inf, math.inf)
-        
-            
-        
+            traverse(node.right)
+
+        traverse(root)
+
+        return self.result
