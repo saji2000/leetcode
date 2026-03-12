@@ -4,11 +4,11 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
+
 class Solution:
     def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
         self.k = k
         self.result = None
-
         def traverse(node):
             if not node or self.result is not None:
                 return
@@ -21,7 +21,6 @@ class Solution:
                 return 
             
             traverse(node.right)
-
+        
         traverse(root)
-
         return self.result
