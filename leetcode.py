@@ -3,7 +3,7 @@ class TrieNode:
         self.children = {}
         self.endOfWord = False
 
-class Trie:
+class PrefixTree:
 
     def __init__(self):
         self.root = TrieNode()
@@ -31,10 +31,4 @@ class Trie:
                 return False
             cur = cur.children[c]
         return True
-
-
-# Your Trie object will be instantiated and called as such:
-# obj = Trie()
-# obj.insert(word)
-# param_2 = obj.search(word)
-# param_3 = obj.startsWith(prefix)
+        
