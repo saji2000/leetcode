@@ -1,48 +1,18 @@
-class TrieNode:
-    def __init__(self):
-        self.children = {}
-        self.endOfWord = False
+class Solution:
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        result = []
 
-class WordDictionary:
+        def backtrack(index, path):
+            if index == len(nums):
+                result.append(path[:])
+                return
+            
+            path.append(nums[index])
+            backtrack(index + 1, path)
+            path.pop()
 
-    def __init__(self):
-        self.root = TrieNode()
-
-    def addWord(self, word: str) -> None:
-        cur = self.root
-        for c in word:
-            if c not in cur.children:
-                cur.children[c] = TrieNode()
-            cur = cur.children[c]
-        cur.endOfWord = True
-
-    def search(self, word: str) -> bool:
-        return self._search(word, 0, self.root)
+            backtrack(index + 1, path)
+            
+        backtrack(0, [])
+        return result
         
-    def _search(self, word, index, node):
-        if index >= len(word):
-            return node.endOfWord
-        
-        c = word[index]
-
-        if c == '.':
-            for child in node.children.values():
-                if self._search(word, index + 1, child):
-                    return True
-            return False
-        
-        else:
-            if c not in node.children:
-                return False
-            return self._search(word, index + 1, node.children[c])
-
-
-
-
-
-
-
-
-
-
-
