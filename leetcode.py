@@ -12,7 +12,6 @@ class Solution:
             path.pop()
 
             backtrack(index + 1, path)
-            
+        
         backtrack(0, [])
         return result
-        
