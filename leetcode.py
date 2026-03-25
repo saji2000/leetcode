@@ -1,17 +1,19 @@
 class Solution:
-    def subsets(self, nums: List[int]) -> List[List[int]]:
+    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
         result = []
 
-        def backtrack(index, path):
-            if index == len(nums):
-                result.append(path[:])
+        def backtrack(index, cur, total):
+            if sum(cur) == target:
+                result.append(cur.copy())
                 return
-            
-            path.append(nums[index])
-            backtrack(index + 1, path)
-            path.pop()
+            if index == len(candidates) or sum(cur) > target:
+                return
 
-            backtrack(index + 1, path)
-        
-        backtrack(0, [])
+            cur.append(candidates[index])
+            backtrack(index, cur, total + candidates[index])
+            cur.pop()
+
+            backtrack(index + 1, cur, total)
+
+        backtrack(0, [], 0)
         return result
