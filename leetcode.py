@@ -6,7 +6,7 @@ class Solution:
         def backtrack(index, cur, total):
             if total == target:
                 result.append(cur.copy())
-                return 
+                return
             if index >= len(candidates) or total > target:
                 return
             
@@ -19,3 +19,4 @@ class Solution:
         
         backtrack(0, [], 0)
         return result
+        
