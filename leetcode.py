@@ -10,13 +10,13 @@ class Solution:
             if index >= len(candidates) or total > target:
                 return
             
-            for i in range(index, len(candidates)):
-                if i > index and candidates[i] == candidates[i-1]:
-                    continue
-                cur.append(candidates[i])
-                backtrack(i + 1, cur, total + candidates[i])
-                cur.pop()
+            cur.append(candidates[index])
+            backtrack(index  + 1, cur, total + candidates[index])
+            cur.pop()
+
+            while index < len(candidates) - 1 and candidates[index] == candidates[index + 1]:
+                index += 1
+            backtrack(index + 1, cur, total)
         
         backtrack(0, [], 0)
         return result
-        
