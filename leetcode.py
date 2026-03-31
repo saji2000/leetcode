@@ -1,22 +1,20 @@
 class Solution:
-    def combinationSum2(self, candidates: List[int], target: int) -> List[List[int]]:
+    def permute(self, nums: List[int]) -> List[List[int]]:
         result = []
-        candidates.sort()
 
-        def backtrack(index, cur, total):
-            if total == target:
+        def backtrack(used, cur):
+            if len(cur) == len(nums):
                 result.append(cur.copy())
                 return
-            if index >= len(candidates) or total > target:
-                return
             
-            cur.append(candidates[index])
-            backtrack(index  + 1, cur, total + candidates[index])
-            cur.pop()
-
-            while index < len(candidates) - 1 and candidates[index] == candidates[index + 1]:
-                index += 1
-            backtrack(index + 1, cur, total)
+            for i in range(len(nums)):
+                if not used[i]:
+                    used[i] = True
+                    cur.append(nums[i])
+                    backtrack(used, cur)
+                    cur.pop()
+                    used[i] = False
         
-        backtrack(0, [], 0)
+        backtrack([False] * len(nums), [])
         return result
+        
