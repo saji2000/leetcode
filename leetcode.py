@@ -14,7 +14,5 @@ class Solution:
                     backtrack(used, cur)
                     cur.pop()
                     used[i] = False
-        
         backtrack([False] * len(nums), [])
         return result
-        
