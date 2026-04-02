@@ -1,18 +1,21 @@
 class Solution:
-    def permute(self, nums: List[int]) -> List[List[int]]:
+    def subsetII(self, nums: List[int]) -> List[List[int]]:
         result = []
+        cur = []
+        nums.sort()
 
-        def backtrack(used, cur):
-            if len(cur) == len(nums):
+        def backtrack(index):
+            if index == len(nums):
                 result.append(cur.copy())
                 return
             
-            for i in range(len(nums)):
-                if not used[i]:
-                    used[i] = True
-                    cur.append(nums[i])
-                    backtrack(used, cur)
-                    cur.pop()
-                    used[i] = False
-        backtrack([False] * len(nums), [])
+            cur.append(nums[index])
+            backtrack(index + 1)
+            cur.pop()
+            
+            while index < len(nums) + 1 and nums[index] == nums[index + 1]:
+                index += 1
+            
+            backtrack(index + 1)
+        backtrack([])
         return result
