@@ -2,6 +2,7 @@ class Solution:
     def partition(self, s: str) -> List[List[str]]:
         result = []
 
+
         def backtrack(start, substr):
             if start >= len(s):
                 result.append(substr.copy())
@@ -11,7 +12,6 @@ class Solution:
                     substr.append(s[start:end + 1])
                     backtrack(end + 1, substr)
                     substr.pop()
-        
+            
         backtrack(0, [])
-        
         return result
