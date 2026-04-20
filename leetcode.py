@@ -1,17 +1,20 @@
 class Solution:
-    def partition(self, s: str) -> List[List[str]]:
+    def letterCombinations(self, digits: str) -> List[str]:
         result = []
+        nums = {"2": "abc", "3": "def", "4": "ghi", "5": "jkl", "6": "mno", "7": "pqrs", "8": "tuv", "9": "wxyz"}
 
-
-        def backtrack(start, substr):
-            if start >= len(s):
-                result.append(substr.copy())
+        def backtrack(i, comb):
+            if len(comb) == len(digits):
+                result.append(comb[:])
+                return
             
-            for end in range(start, len(s)):
-                if s[start:end + 1] == s[start:end + 1][::-1]:
-                    substr.append(s[start:end + 1])
-                    backtrack(end + 1, substr)
-                    substr.pop()
-            
-        backtrack(0, [])
+            for letter in nums[digits[i]]:
+                print(i)
+                print(comb + letter)
+                backtrack(i + 1, comb + letter)
+        
+        backtrack(0, "")
         return result
+
+solution = Solution()
+print(solution.letterCombinations("234"))
